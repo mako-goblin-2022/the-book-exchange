@@ -1,13 +1,14 @@
 import React from 'react'
+import Header from './Header'
+import Footer from './Footer'
 
 function App () {
   return (
     <>
-      <header className="header">
-        <h1>My Collection</h1>
-      </header>
       <section className="main">
+        <Header />
         {/* add your code here */}
+        <Footer />
       </section>
     </>
   )
