@@ -1,5 +1,7 @@
 const connection = require('./connection')
 
+module.exports = { getBookDetails }
+
 function getBookDetails(id, db = connection) {
   return db('books')
     .where({ id })
@@ -20,5 +22,3 @@ function getBookDetails(id, db = connection) {
     )
     .first()
 }
-
-module.exports = { getBookDetails }

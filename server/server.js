@@ -3,7 +3,7 @@ const path = require('path')
 
 const server = express()
 
-const bookRoutes = require('./routes/book')
+const bookRoutes = require('./routes/bookView')
 const profileRoutes = require('./routes/profile')
 const authRoutes = require('./routes/auth-routes')
 
