@@ -18,7 +18,6 @@ afterAll(() => {
 describe('db.getProfile', () => {
   it('can get data with id', () => {
     return getProfile('2', testDb).then((user) => {
-      //console.log(user)
       expect.assertions(2)
       expect(user).not.toBeNull()
       expect(user.id).toBe(2)
