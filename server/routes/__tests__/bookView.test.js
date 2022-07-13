@@ -32,4 +32,12 @@ describe('GET /api/v1/books', () => {
         expect(fakeBook.id).toBe(1)
       })
   })
+  it('returns status 500 when db fails', () => {
+    getBookDetails.mockImplementation(() => Promise.reject(new Error('fail')))
+    return request(server)
+      .get('/api/v1/books/1')
+      .then((res) => {
+        expect(res.status).toBe(500)
+      })
+  })
 })
