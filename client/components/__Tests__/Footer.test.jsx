@@ -16,6 +16,5 @@ describe('<Footer/>', () => {
     console.log(p[0])
     expect(p[0]).not.toBeNull()
     expect(p[0]).toHaveTextContent('The Book Exchange')
-    
   })
 })
