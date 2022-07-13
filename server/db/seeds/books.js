@@ -3,7 +3,7 @@ exports.seed = function (knex) {
   return knex('books')
     .del()
     .then(function () {
-      return knex('users').insert([
+      return knex('books').insert([
         {
           id: 1,
           title: 'Winnie-the-Pooh',

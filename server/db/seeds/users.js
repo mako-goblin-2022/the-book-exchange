@@ -6,7 +6,8 @@ exports.seed = function (knex) {
         {
           id: 1,
           name: 'Anette',
-          genre: 'Animation|Drama',
+          location: 'Mars',
+          favourite_genre: 'Animation|Drama',
           trading_tokens: 1,
           email: 'aswancott0@blogtalkradio.com',
           image:
@@ -15,7 +16,8 @@ exports.seed = function (knex) {
         {
           id: 2,
           name: 'Brice',
-          genre: 'Drama|Thriller',
+          location: 'Jupiter',
+          favourite_genre: 'Drama|Thriller',
           trading_tokens: 2,
           email: 'bblei1@unesco.org',
           image:
@@ -24,7 +26,8 @@ exports.seed = function (knex) {
         {
           id: 3,
           name: 'Cameron',
-          genre: 'Drama',
+          location: 'Ceres',
+          favourite_genre: 'Drama',
           trading_tokens: 3,
           email: 'cbauchop2@netlog.com',
           image:
@@ -33,7 +36,8 @@ exports.seed = function (knex) {
         {
           id: 4,
           name: 'Forster',
-          genre: 'Adventure',
+          location: 'Pluto',
+          favourite_genre: 'Adventure',
           trading_tokens: 4,
           email: 'fdarrach3@state.gov',
           image:
@@ -42,7 +46,8 @@ exports.seed = function (knex) {
         {
           id: 5,
           name: 'Berty',
-          genre: 'Documentary|Musical',
+          location: 'Ganymede',
+          favourite_genre: 'Documentary|Musical',
           trading_tokens: 5,
           email: 'blangfield4@slate.com',
           image:
