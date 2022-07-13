@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
   return knex.schema.createTable('books', (t) => {
-    t.increments('id')
+    t.increments('id').primary()
     t.text('title')
     t.text('author')
     t.text('genre')
