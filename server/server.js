@@ -6,7 +6,7 @@ const server = express()
 const homeRoutes = require('./routes/home')
 const bookRoutes = require('./routes/book')
 const profileRoutes = require('./routes/profile')
-const authRoutes = require('./routes/auth-routes')
+const authRoutes = require('./routes/auth-route')
 
 server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
