@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate,useParams } from 'react-router-dom'
-import { fetchProfile } from '../actions/profile'
+import { fetchBooks, fetchProfile } from '../actions/profile'
 import styles from '../styles/Profile.module.scss'
 
 function Profile() {
@@ -14,10 +14,13 @@ function Profile() {
     return state.profileReducer
   })
 
-  console.log(profile)
+  console.log("profile",profile)
   useEffect(() => {
-    dispatch(fetchProfile(id))
+    // dispatch(fetchProfile(id))
+    dispatch(fetchBooks(id))
   }, [])
+  const chosenProfile = profile.profile
+  const chosenBooks = profile.books
 
   return (
     <div className={styles.container}>
@@ -31,6 +34,16 @@ function Profile() {
         <p><strong>Book Token:</strong> {profile.trading_tokens}</p>
       </div>
         
+      </div>
+      <div>
+        {chosenBooks.map((book)=>{
+          <div key={book.id}>
+          <h3>Title: {book.title}</h3>
+          <img className={styles.tokenimg} src={book.image} alt={book.title} />
+        </div>
+        }
+          
+        )}
       </div>
       <button onClick={()=>navigate('/books/add')} >Add New Book</button>
     </div>
