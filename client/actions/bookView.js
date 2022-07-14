@@ -1,4 +1,4 @@
-export const SET_BOOKS = 'SET_BOOK'
+export const SET_BOOKS = 'SET_BOOKS'
 
 import { getBooks } from '../apis/bookView'
 
