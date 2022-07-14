@@ -17,7 +17,7 @@ router.get('/:id', (req, res) => {
 router.patch('/status/:id', (req, res) => {
   const id = req.params.id
   db.updateStatus(id)
-    .then(() => {
+    .then((data) => {
       res.sendStatus(200)
     })
     .catch((err) => {

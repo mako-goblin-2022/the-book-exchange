@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams, Link} from 'react-router-dom'
 import styles from '../styles/BookView.module.scss'
 
-import {fetchBook} from '../actions/bookView'
+import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
@@ -14,6 +14,10 @@ export default function BookView() {
     dispatch(fetchBook(id))
   }, [])
 
+  function handleClick(e){
+    dispatch(updateBookStatus(id))
+  }
+
   return (
     <>
       <div className = {styles.bookView}>
@@ -22,15 +26,16 @@ export default function BookView() {
         </div>
           <div className = {styles.bookDetails}>
             <h3>{book.title}</h3>
-            <p>{book.author}</p>
+            <p>By {book.author}</p>
             <p>Genre: {book.genre}</p>
             <p>Publishing details: {book.publishing_details}</p>
             <p>Edition: {book.edition}</p>
             <p>ISBN: {book.isbn}</p>
             <p>Summary: {book.summary}</p>
             <p>Condition: {book.condition}</p>
+            <p>Status: {book.status}</p>
           </div>
-          
+          <button onClick={handleClick}>Request book</button>
       </div>
       <div className = 'back-button'>
         <Link to={'/'}>
