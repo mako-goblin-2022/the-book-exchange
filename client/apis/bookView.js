@@ -13,3 +13,7 @@ export function getBook(id) {
       res.status(500)
     })
 }
+
+export function changeBookStatus(id) {
+  return request.patch(`${serverUrl}/books/status/${id}`)
+}
