@@ -16,7 +16,7 @@ exports.seed = function (knex) {
             'Winnie-the-Pooh follows the many adventures of Winnie and his friends, Piglet, Eeyore, Tigger, Kanga, Christopher Robin, and many more. He calls himself a Bear of Very Little Brain, yet he shows faithfully that he is a wise and loving creature, furthermore a whimsical philosopher who is rather fond of honey. Three cheers for Pooh!',
           condition: 'Well read',
           image:
-            'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
+            'https://upload.wikimedia.org/wikipedia/en/c/c5/Winnie-the-Pooh_%28book%29.png',
           user_id: 2,
           status: 'active',
           rating: '',
@@ -50,9 +50,9 @@ exports.seed = function (knex) {
           isbn: '0-571-05686-5',
           summary:
             "William Golding’s 1954 novel 'Lord of the Flies' tells the story of a group of young boys who find themselves alone on a deserted island. They develop rules and a system of organization, but without any adults to serve as a civilizing impulse, the children eventually become violent and brutal. In the context of the novel, the tale of the boys' descent into chaos suggests that human nature is fundamentally savage.",
-          condition: 'Seen better',
+          condition: 'Seen better days',
           image:
-            'days	https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg',
+            'https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg',
           user_id: 1,
           status: 'active',
           rating: '',
