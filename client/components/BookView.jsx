@@ -1,12 +1,19 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import {useParams, Link} from 'react-router-dom'
 
+import {fetchBook} from '../actions/bookView'
+
 export default function BookView() {
-  const books = useSelector(state => state.books)
+  const book = useSelector(state => state.book)
   const {id} = useParams()
-  const book = books.find((book) => id == book.id)
+  const dispatch = useDispatch()
+  //const book = books.find((book) => id == book.id)
   
+  useEffect(() => {
+    dispatch(fetchBook(id))
+  }, [])
+
   return (
     <>
       {book && <div className = 'book-view'>
