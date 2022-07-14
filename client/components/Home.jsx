@@ -17,7 +17,9 @@ export default function Home() {
       <h1>Hi</h1>
       <div>
         {books.content &&
-          books.content.map((book) => <li key={book.id}>{book.title}</li>)}
+          books.content.map((book) => (
+            <img src={book.image} key={book.id} alt="Book" />
+          ))}
       </div>
     </>
   )
