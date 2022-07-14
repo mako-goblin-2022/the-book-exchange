@@ -10,7 +10,7 @@ server.use(express.json())
 server.use(express.static(path.join(__dirname, 'public')))
 
 server.use('/api/v1/home', homeRoutes)
-server.use('/api/v1/profile', profileRoutes) //profile
+server.use('/api/v1/profile', profileRoutes)
 server.use('/api/v1/auth', authRoutes)
 server.use('/api/v1/books', bookRoutes)
 
