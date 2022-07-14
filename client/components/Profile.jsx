@@ -21,12 +21,12 @@ function Profile() {
     <div className={styles.container}>
       <img src={profile.image} alt={profile.name} />
       <h2>{profile.name}</h2>
-      <h3>Location: {profile.location}</h3>
-      <p>Favoutite genre: {profile.favourite_genre}</p>
+      <h3><strong>Location:</strong> {profile.location}</h3>
+      <p><strong>Favoutite genre:</strong> {profile.favourite_genre}</p>
       <div className={styles.bob}>
         <img className={styles.tokenimg} src="/images/book.png" alt="book" />
         <div className={styles.caption}>
-        <p>Book Token: {profile.trading_tokens}</p>
+        <p><strong>Book Token:</strong> {profile.trading_tokens}</p>
         </div>
         
       </div>
