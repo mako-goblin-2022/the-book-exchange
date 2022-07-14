@@ -40,3 +40,17 @@ export default function BookView() {
     </>
   )
 }
+
+
+// request book button with onClick
+// when clicked, update book status from active to inactive
+//1. db function to update boolean
+//2. route ?? probably not
+//3. api call - requestBook (update status via this function)
+//4. 
+
+
+// if inactive, book needs to disappear from home view
+// pop up message : congrats, book is yours...
+// increment/decrement book token
+
