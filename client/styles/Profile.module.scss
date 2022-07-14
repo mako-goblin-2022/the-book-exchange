@@ -1,0 +1,41 @@
+.tokenimg{
+ 
+  width: 100%;
+  height: auto;
+}
+.bob{
+  display: flex;
+  flex-direction: row;
+padding: 5px;
+width:  fit-content;
+background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+margin-bottom: 25px;
+
+}
+.caption{
+  
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.container{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px;
+  text-align: center;
+  padding: 20px;
+}
+
+img {
+  height: 250px;
+  width: auto;
+  object-fit: cover;
+}
+h2,h3{
+  font-family: 'Poppins', sans-serif;
+  color: #5b27d8;
+  font-size: medium;
+}
