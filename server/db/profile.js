@@ -6,6 +6,11 @@ function getProfile(id, db = connection) {
   return db('users').select().where('id', id).first()
 }
 
+function getBooksByUserId(user_id, db = connection) {
+  return db('books').select().where({ user_id })
+}
+
 module.exports = {
   getProfile,
+  getBooksByUserId,
 }
