@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate,useParams } from 'react-router-dom'
 import { fetchProfile } from '../actions/profile'
 import styles from '../styles/Profile.module.scss'
 
 function Profile() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
   let { id } = useParams()
   //const { token } = useSelector((state) => state.user)
@@ -23,13 +24,14 @@ function Profile() {
       <h2>{profile.name}</h2>
       <h3><strong>Location:</strong> {profile.location}</h3>
       <p><strong>Favoutite genre:</strong> {profile.favourite_genre}</p>
-      <div className={styles.bob}>
+      <div className={styles.tokenContainer}>
         <img className={styles.tokenimg} src="/images/book.png" alt="book" />
         <div className={styles.caption}>
         <p><strong>Book Token:</strong> {profile.trading_tokens}</p>
-        </div>
+      </div>
         
       </div>
+      <button onClick={()=>navigate('/books/add')} >Add New Book</button>
     </div>
   )
 }
