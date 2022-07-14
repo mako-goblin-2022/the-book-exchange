@@ -1,4 +1,4 @@
-import { SET_PROFILE } from '../actions/profile'
+import { SET_PROFILE, SET_PROFILE_BOOKS } from '../actions/profile'
 
 const initialState = [{}]
 
@@ -7,7 +7,9 @@ const profileReducer = (state = initialState, action) => {
 
   switch (type) {
     case SET_PROFILE:
-      return payload
+      return { profile: payload }
+    case SET_PROFILE_BOOKS:
+      return { books: payload }
     default:
       return state
   }

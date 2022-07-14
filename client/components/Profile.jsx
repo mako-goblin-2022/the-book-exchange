@@ -10,6 +10,7 @@ function Profile() {
   let { id } = useParams()
   //const { token } = useSelector((state) => state.user)
   const profile = useSelector((state) => {
+    
     return state.profileReducer
   })
 
