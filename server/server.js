@@ -2,7 +2,6 @@ const express = require('express')
 const path = require('path')
 const server = express()
 const homeRoutes = require('./routes/home')
-const bookRoutes = require('./routes/book')
 
 const bookRoutes = require('./routes/bookView')
 const profileRoutes = require('./routes/profile')
