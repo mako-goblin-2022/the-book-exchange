@@ -12,6 +12,7 @@ export function setBooks(books) {
 export function fetchBooks() {
   return (dispatch) => {
     return getBooks().then((books) => {
+      console.log('action', books)
       dispatch(setBooks(books))
       return null
     })

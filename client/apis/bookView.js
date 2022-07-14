@@ -7,6 +7,7 @@ export function getBooks() {
     .get(`${serverUrl}/books`)
     .then((response) => {
       const booksData = response.body
+      //console.log('api', booksData)
       return booksData
     })
     .catch((res) => {

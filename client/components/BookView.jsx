@@ -6,10 +6,10 @@ export default function BookView() {
   const books = useSelector(state => state.books)
   const {id} = useParams()
   const book = books.find((book) => id == book.id)
-
+  
   return (
     <>
-      <div className = 'book-view'>
+      {book && <div className = 'book-view'>
         <img src={book.image} alt='book cover'/>
           <ul>
             <li>Title: {book.title}</li>
@@ -21,7 +21,7 @@ export default function BookView() {
             <li>Summary: {book.summary}</li>
             <li>Condition: {book.condition}</li>
           </ul>
-      </div>
+      </div>}
       <div className = 'back-button'>
         <Link to={'/'}>
         <button>Back</button>
