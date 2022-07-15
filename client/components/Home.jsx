@@ -17,14 +17,16 @@ export default function Home() {
 
 
   return (
-    <>
+    <div className={styles.home}>
       <h1>Browse books!</h1>
-      <div className={styles.home}>
+      <div className={styles.booksList}>
         {books.content &&
           books.content.map((book) => (
-            <img className="book-cover" src={book.image} key={book.id} alt="Book" onMouseDown={() => navigate(/books/ + book.id)}/>
+            <div key={book.id} onMouseDown={() => navigate(/books/ + book.id)} role="button" tabIndex={0}> 
+            <img className={styles.bookCover} src={book.image} key={book.id} alt="Book" />
+            </div>
           ))}
       </div>
-    </>
+    </div>
   )
 }
