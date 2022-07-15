@@ -10,10 +10,9 @@ export function setBook(book) {
   }
 }
 
-export function setStatus(book) {
+export function setStatus() {
   return {
-    type: SET_STATUS,
-    payload: book,
+    type: SET_STATUS, //SET_STATUS_INACTIVE
   }
 }
 
@@ -30,7 +29,7 @@ export function fetchBook(id) {
 export function updateBookStatus(id) {
   return (dispatch) => {
     return changeBookStatus(id).then((book) => {
-      dispatch(setStatus(book))
+      dispatch(setStatus())
       return null
     })
   }

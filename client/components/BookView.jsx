@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link, useNavigate } from 'react-router-dom'
 import styles from '../styles/BookView.module.scss'
 
 import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
+  // const navigate = useNavigate()
   const {id} = useParams()
   const dispatch = useDispatch()
   
@@ -16,6 +17,9 @@ export default function BookView() {
 
   function handleClick(e){
     dispatch(updateBookStatus(id))
+    alert('The book is yours!')
+    // navigate(-1)
+
   }
 
   return (
@@ -55,7 +59,10 @@ export default function BookView() {
 //4. 
 
 
-// if inactive, book needs to disappear from home view
+// if inactive, book needs to disappear from home view - liaise with Tim and Mandy to only getbookas that are active 
+
 // pop up message : congrats, book is yours...
+
+
 // increment/decrement book token
 
