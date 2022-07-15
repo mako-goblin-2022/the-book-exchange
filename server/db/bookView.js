@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-module.exports = { getBookDetails, updateStatus }
+module.exports = { getBookDetails, updateStatus, addBook }
 
 function getBookDetails(id, db = connection) {
   return db('books')
@@ -25,4 +25,12 @@ function getBookDetails(id, db = connection) {
 
 function updateStatus(id, db = connection) {
   return db('books').where({ id }).update({ status: 'inactive' })
+}
+
+function addBook(book, db = connection) {
+  return db('books')
+    .insert(book)
+    .then(([id]) => {
+      return { ...book, id }
+    })
 }
