@@ -14,7 +14,7 @@ function App() {
         <Header />
         <Routes>
           <Route path={'/profile/:id'} element={<Profile />} />    
-        <Route path='books/:id' element={<BookView />} />
+          <Route path={'/books/:id'} element={<BookView />} />
         </Routes>
         <Footer />
       </section>
