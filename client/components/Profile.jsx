@@ -44,13 +44,17 @@ function Profile() {
       </div>
         
       </div>
-      <div>
+      <div className={styles.row}>
         {chosenBooks.map((book)=>(
           //console.log(book.id)
-          <div className={styles.container} >
+          <div className={[styles.tokenContainer, styles.column]} key={book.id}>
             
-          <h3>Title: {book.title}</h3>
-          <img className={styles.tokenimg} src={book.image} alt={book.title} />
+          
+          <img className={styles.bookimg} src={book.image} alt={book.title} />
+          <div className={styles.caption}>
+            <p >{book.title+' \n By:'+ book.author}</p>
+          
+            </div>
         </div>)
         
           
