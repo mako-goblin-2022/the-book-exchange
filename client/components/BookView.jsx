@@ -40,6 +40,7 @@ export default function BookView() {
             <p>Status: {book.status}</p>
           </div>
           <button onClick={handleClick}>Request book</button>
+          <button>Edit listing for {book.title}</button>
       </div>
       <div className = 'back-button'>
         <Link to={'/'}>
