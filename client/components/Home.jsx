@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <>
-      <h1>Hi</h1>
+      <h1>Browse books!</h1>
       <div>
         {books.content &&
           books.content.map((book) => (
