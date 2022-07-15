@@ -17,3 +17,15 @@ export function getBook(id) {
 export function changeBookStatus(id) {
   return request.patch(`${serverUrl}/books/status/${id}`)
 }
+
+export function saveBook(bookBody) {
+  return request
+    .post(`${serverUrl}/books/add`)
+    .send(bookBody)
+    .then((res) => {
+      return res.body
+    })
+    .catch((res) => {
+      res.status(500)
+    })
+}
