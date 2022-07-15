@@ -14,4 +14,15 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.patch('/status/:id', (req, res) => {
+  const id = req.params.id
+  db.updateStatus(id)
+    .then((data) => {
+      res.sendStatus(200)
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router
