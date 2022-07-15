@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate,useParams } from 'react-router-dom'
 import { fetchBooks, fetchProfile } from '../actions/profile'
@@ -8,26 +8,35 @@ function Profile() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   let { id } = useParams()
+
+  // const [loading, setLoading] = useState(true)
   //const { token } = useSelector((state) => state.user)
-  const profile = useSelector((state) => {
+  const FullState = useSelector((state) => {
     
     return state.profileReducer
   })
 
-  console.log("profile",profile)
+  //console.log("full state",FullState)
   useEffect(() => {
-    // dispatch(fetchProfile(id))
-    dispatch(fetchBooks(id))
+     dispatch(fetchProfile(id))
   }, [])
-  const chosenProfile = profile.profile
-  const chosenBooks = profile.books
+
+  useEffect(()=>{
+    dispatch(fetchBooks(id))
+  },[])
+  const profile = FullState.profile
+  //console.log("chosen",chosenProfile)
+  const chosenBooks = FullState.books
+  console.log(chosenBooks)
 
   return (
+<>
+
     <div className={styles.container}>
       <img src={profile.image} alt={profile.name} />
       <h2>{profile.name}</h2>
       <h3><strong>Location:</strong> {profile.location}</h3>
-      <p><strong>Favoutite genre:</strong> {profile.favourite_genre}</p>
+      <p><strong>Favourite genre:</strong> {profile.favourite_genre}</p>
       <div className={styles.tokenContainer}>
         <img className={styles.tokenimg} src="/images/book.png" alt="book" />
         <div className={styles.caption}>
@@ -36,17 +45,20 @@ function Profile() {
         
       </div>
       <div>
-        {chosenBooks.map((book)=>{
-          <div key={book.id}>
+        {chosenBooks.map((book)=>(
+          //console.log(book.id)
+          <div className={styles.container} >
+            
           <h3>Title: {book.title}</h3>
           <img className={styles.tokenimg} src={book.image} alt={book.title} />
-        </div>
-        }
+        </div>)
+        
           
         )}
       </div>
       <button onClick={()=>navigate('/books/add')} >Add New Book</button>
     </div>
+  </>
   )
 }
 // id: 1,
