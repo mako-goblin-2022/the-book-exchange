@@ -19,7 +19,6 @@ export function setStatus() {
 export function fetchBook(id) {
   return (dispatch) => {
     return getBook(id).then((book) => {
-      console.log('action', book)
       dispatch(setBook(book))
       return null
     })
