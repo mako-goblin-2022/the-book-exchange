@@ -2,6 +2,8 @@ import { SET_BOOKS, SET_BOOKS_ERROR, fetchBooks } from '../home'
 
 import { getBooksData } from '../../apis/home'
 
+jest.mock('../../apis/home')
+
 const fakeDispatch = jest.fn()
 
 afterAll(() => {
@@ -49,7 +51,7 @@ const getBooksMockData = {
 }
 
 describe('fetchBooks', () => {
-  it.todo('dispatch data from SET_BOOKS on success', () => {
+  it('dispatch data from SET_BOOKS on success', () => {
     expect.assertions(1)
     getBooksData.mockReturnValue(Promise.resolve(getBooksMockData))
 
@@ -57,6 +59,17 @@ describe('fetchBooks', () => {
       expect(fakeDispatch).toHaveBeenCalledWith({
         type: SET_BOOKS,
         payload: getBooksMockData,
+      })
+    })
+  })
+
+  it('dispatch data from SET_ERROR_BOOKS on failure', () => {
+    expect.assertions(1)
+    getBooksData.mockImplementation(() => Promise.reject(new Error('Error!')))
+    return fetchBooks()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: SET_BOOKS_ERROR,
+        payload: 'Error!',
       })
     })
   })
