@@ -1,0 +1,29 @@
+div{
+  background-color: #fffffc ;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto; 
+  align-items: center;
+}
+
+h1{
+  font-size: 3em;
+  text-align: center;
+  /* text-decoration: underline; */
+}
+
+img {
+ width:200px;
+ height: 400px;
+ padding: 25px;
+ box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.39);
+ margin:30px 30px 50px 30px;
+}
+
+img:hover {
+  border: 10px solid #5B27D8;
+ }
+
+
