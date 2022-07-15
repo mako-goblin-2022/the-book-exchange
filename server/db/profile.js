@@ -10,7 +10,16 @@ function getBooksByUserId(user_id, db = connection) {
   return db('books').select().where({ user_id })
 }
 
+function addBook(book, db = connection) {
+  return db('books')
+    .insert(book)
+    .then(([id]) => {
+      return { ...book, id }
+    })
+}
+
 module.exports = {
   getProfile,
   getBooksByUserId,
+  addBook,
 }
