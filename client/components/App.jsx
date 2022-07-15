@@ -1,8 +1,11 @@
+import { Routes, Route} from 'react-router-dom'
+
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Profile from './Profile'
-import { Route, Routes } from 'react-router-dom'
+import BookView from './BookView'
+
 
 function App() {
   return (
@@ -10,7 +13,8 @@ function App() {
       <section className="main">
         <Header />
         <Routes>
-          <Route path={'/profile/:id'} element={<Profile />} />
+          <Route path={'/profile/:id'} element={<Profile />} />    
+        <Route path='books/:id' element={<BookView />} />
         </Routes>
         <Footer />
       </section>
@@ -19,3 +23,5 @@ function App() {
 }
 
 export default App
+
+

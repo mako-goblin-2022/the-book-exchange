@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-module.exports = { getBookDetails }
+module.exports = { getBookDetails, updateStatus }
 
 function getBookDetails(id, db = connection) {
   return db('books')
@@ -21,4 +21,8 @@ function getBookDetails(id, db = connection) {
       'rating'
     )
     .first()
+}
+
+function updateStatus(id, db = connection) {
+  return db('books').where({ id }).update({ status: 'inactive' })
 }
