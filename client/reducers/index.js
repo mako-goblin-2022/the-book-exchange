@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
-
-import home from './home'
 import book from './bookView'
+import home from './home'
+import profileReducer from './profile'
 
 export default combineReducers({
+  profileReducer,
   home,
   book,
 })

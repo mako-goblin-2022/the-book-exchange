@@ -4,6 +4,7 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Home from './Home'
+import Profile from './Profile'
 import BookView from './BookView'
 import Nav from './Nav'
 import Registration from './Registration'
@@ -17,10 +18,10 @@ function App() {
     <>
       <section className="main">
         <Header />
-        <Nav />
         <Routes>
-          <Route path="books/:id" element={<BookView />} />
-          <Route path="register" element={<Registration />} />
+          <Route path="/" element={<Home />} />
+          <Route path={'/profile/:id'} element={<Profile />} />
+          <Route path={'/books/:id'} element={<BookView />} />
         </Routes>
         <Footer />
       </section>
