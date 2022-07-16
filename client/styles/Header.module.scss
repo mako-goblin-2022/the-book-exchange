@@ -1,7 +1,7 @@
 header{
-  display: inline-flex;
-  
-
+  display: inline-flex; 
+  background-color:#f5f3f4 ;
+  border-bottom: 2px solid #5b27d8;
   padding: 20px;
   width: 100%;
   justify-content: center;
@@ -12,12 +12,16 @@ header{
     color: #5b27d8;
     padding-top: 5px;
     align-self: center;
+    padding: 20px;
   }
   img{
-    width: 15%;
+    padding: 20px;
+    padding-right: 5px;
+    width: 8%;
     height: fit-content;
-    object-fit: scale-down;
+    object-fit:contain;
     float: left;
     align-self: center;
+
   }
 }
