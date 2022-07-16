@@ -25,17 +25,4 @@ router.patch('/status/:id', (req, res) => {
     })
 })
 
-router.post('/add', (req, res) => {
-  const book = req.body
-  //const userId = req.body.user_id
-  db.addBook(book)
-    .then((newBook) => {
-      res.json(newBook)
-      return null
-    })
-    .catch((err) => {
-      res.status(500).send(err.message)
-    })
-})
-
 module.exports = router

@@ -18,6 +18,15 @@ function getBooks(db = connection) {
   )
 }
 
+function addBook(book, db = connection) {
+  return db('books')
+    .insert(book)
+    .then(([id]) => {
+      return { ...book, id }
+    })
+}
+
 module.exports = {
   getBooks,
+  addBook,
 }
