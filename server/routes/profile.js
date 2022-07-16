@@ -1,11 +1,12 @@
 const express = require('express')
+const checkJwt = require('../auth0.js')
 
 const router = express.Router()
 
 const db = require('../db/profile')
 
 // GET /api/v1/profile/:id
-router.get('/:id', (req, res) => {
+router.get('/:id', checkJwt, (req, res) => {
   const { id } = req.params
   db.getProfile(id)
     .then((data) => res.json(data))
@@ -15,7 +16,7 @@ router.get('/:id', (req, res) => {
 })
 
 //GET /api/v1/profile/:id/books
-router.get('/:id/books', (req, res) => {
+router.get('/:id/books', checkJwt, (req, res) => {
   const user_id = req.params.id
   db.getBooksByUserId(user_id)
     .then((data) => res.json(data))

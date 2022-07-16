@@ -1,4 +1,5 @@
 const express = require('express')
+const checkJwt = require('../auth0')
 const router = express.Router()
 
 const db = require('../db/bookView')
@@ -14,7 +15,7 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.patch('/status/:id', (req, res) => {
+router.patch('/status/:id', checkJwt, (req, res) => {
   const id = req.params.id
   db.updateStatus(id)
     .then((data) => {
