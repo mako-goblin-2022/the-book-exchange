@@ -6,6 +6,7 @@ import Footer from './Footer'
 import Home from './Home'
 import Profile from './Profile'
 import BookView from './BookView'
+import AddBook from './AddBook'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path={'/profile/:id'} element={<Profile />} />    
           <Route path={'/books/:id'} element={<BookView />} />
+          <Route path={'/add'} element={<AddBook />} />
         </Routes>
         <Footer />
       </section>
