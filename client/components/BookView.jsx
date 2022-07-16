@@ -7,7 +7,7 @@ import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-  // const navigate = useNavigate()
+   const navigate = useNavigate()
   const {id} = useParams()
   const dispatch = useDispatch()
   
@@ -40,7 +40,7 @@ export default function BookView() {
             <p>Status: {book.status}</p>
           </div>
           <button onClick={handleClick}>Request book</button>
-          <button>Edit listing for {book.title}</button>
+          <button onClick={()=>navigate('/edit/'+book.id)}>Edit listing for {book.title}</button>
       </div>
       <div className = 'back-button'>
         <Link to={'/'}>
