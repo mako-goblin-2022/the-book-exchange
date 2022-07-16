@@ -1,17 +1,9 @@
 import React from 'react'
-//import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
+import styles from '../styles/Nav.module.scss'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-
-const NavGroup = styled.nav`
-  float: right;
-`
-
-const NavLink = styled(Link)`
-  margin-right: 30px;
-`
 
 function Nav() {
   // TODO: call the useAuth0 hook and destructure logout and loginWithRedirect
@@ -32,25 +24,42 @@ function Nav() {
     e.preventDefault()
     loginWithRedirect()
   }
+
+  function handleSubmit(e) {}
+
   return (
     <>
-      <NavGroup>
+      <div className={styles.topnav}>
         <NavLink to="/">Home</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <div className={styles.searchContainer}>
+          <form className={styles.navform} onSubmit={handleSubmit}>
+            <input type="text" placeholder="Search.." name="search" />
+            <button className={styles.formIcon}>
+              <img
+                className={styles.imgsearch}
+                src="/images/book.png"
+                alt="book"
+              />
+            </button>
+          </form>
+        </div>
         <IfAuthenticated>
-          <a href="/" onClick={handleLogoff}>
+          <NavLink to="/profile/:id">My Profile</NavLink>
+          <NavLink to="/" onClick={handleLogoff}>
             Log off
-          </a>
+          </NavLink>
         </IfAuthenticated>
+
         <IfNotAuthenticated>
-          <a href="/" onClick={handleRegister}>
+          <NavLink to="/" onClick={handleRegister}>
             Register
-          </a>
-          <a href="/" onClick={handleSignIn}>
+          </NavLink>
+          <NavLink to="/" onClick={handleSignIn}>
             Sign in
-          </a>
+          </NavLink>
         </IfNotAuthenticated>
-      </NavGroup>
-      <h1>Fruit FTW!</h1>
+      </div>
     </>
   )
 }
