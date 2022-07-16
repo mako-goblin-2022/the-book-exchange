@@ -18,6 +18,7 @@ router.post('/add', (req, res) => {
   //const userId = req.body.user_id
   db.addBook(book)
     .then((newBook) => {
+      console.log(newBook)
       res.json(newBook)
       return null
     })

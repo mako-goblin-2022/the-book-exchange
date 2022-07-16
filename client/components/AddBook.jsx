@@ -42,12 +42,11 @@ const AddBook = () => {
   function handleSubmit(event) {
     event.preventDefault()
     dispatch(addBook(form))
+    navigate('/')
+    
   }
 
-  function handleClick() {
-    navigate(-1)
-  }
-
+ 
   return (
     <>
 
@@ -68,7 +67,7 @@ const AddBook = () => {
             id="author"
             onChange={handleChange}
             value={form.author}
-            name="producer"
+            name="author"
           />
         </label>
         <label htmlFor="genre">
@@ -98,7 +97,7 @@ const AddBook = () => {
             name="edition"
           />
         </label>
-        <label htmlFor="isbn" style={style}>
+        <label htmlFor="isbn">
           ISBN:
           <input
             id="isbn"
@@ -121,7 +120,7 @@ const AddBook = () => {
           <input
             id="condition"
             onChange={handleChange}
-            value={form.summary}
+            value={form.condition}
             name="condition"
           />
         </label>
@@ -143,7 +142,7 @@ const AddBook = () => {
             name="rating"
           />
         </label>
-        <button onClick={handleClick}>Add Book</button>
+        <button>Add Book</button>
       </form>
 
     </>
