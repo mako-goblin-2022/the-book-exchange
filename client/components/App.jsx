@@ -11,15 +11,17 @@ import BookView from './BookView'
 function App() {
   return (
     <>
+     <Header />
       <section className="main">
-        <Header />
+       
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path={'/profile/:id'} element={<Profile />} />    
           <Route path={'/books/:id'} element={<BookView />} />
         </Routes>
-        <Footer />
+        
       </section>
+      <Footer />
     </>
   )
 }
