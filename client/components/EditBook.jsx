@@ -9,6 +9,7 @@ export default function EditBook() {
   const [editedBook, seteditedBook] = useState({})
   const {id} = useParams()
   const dispatch = useDispatch()
+  const navigate =  useNavigate()
  
   
   useEffect(() => {
@@ -22,13 +23,13 @@ export default function EditBook() {
       ...editedBook,
       [e.target.name]: e.target.value,
     })
-    console.log({[e.target.name]: e.target.value})
   }
 
 function handleSubmit(e){
   e.preventDefault()
   dispatch(saveBook(editedBook, id))
   alert('Your update has been saved!')
+  navigate('/books/'+id)
 }
 
   return (
@@ -75,7 +76,7 @@ function handleSubmit(e){
         <label htmlFor='rating'>Rating
           <input id='rating' name='rating' type='text' defaultValue={book.rating} onChange={handleChange}></input>
         </label>
-        <button type='submit'>Save changes</button>
+        <button type='submit' className='primary-button'>Save changes</button>
       </form>
     </div>
   )

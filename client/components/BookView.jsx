@@ -39,12 +39,12 @@ export default function BookView() {
             <p>Condition: {book.condition}</p>
             <p>Status: {book.status}</p>
           </div>
-          <button onClick={handleClick}>Request book</button>
-          <button onClick={()=>navigate('/edit/'+book.id)}>Edit listing for {book.title}</button>
+          <button onClick={handleClick} className='primary-button'>Request book</button>
+          <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button>
       </div>
       <div className = 'back-button'>
         <Link to={'/'}>
-        <button>Back</button>
+        <button className='secondary-button'>Back</button>
         </Link>
       </div>
     </>
