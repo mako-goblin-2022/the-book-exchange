@@ -108,7 +108,7 @@ const AddBook = () => {
         </label>
         <label htmlFor="summary" >
           Summary:
-          <input
+          <textarea
             id="summary"
             onChange={handleChange}
             value={form.summary}
