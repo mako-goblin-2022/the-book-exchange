@@ -1,8 +1,9 @@
 const request = require('supertest')
 const server = require('../../server')
-const { getBooks } = require('../../db/home')
+const { getBooks, addBook } = require('../../db/home')
 jest.mock('../../db/home', () => ({
   getBooks: jest.fn(),
+  addBook: jest.fn(),
 }))
 
 beforeEach(() => {
@@ -76,6 +77,49 @@ describe('GET /api/v1/home/', () => {
       .then((res) => {
         expect(res.status).toBe(500)
         expect(res.text).toContain('Server error')
+      })
+  })
+})
+
+const fakeBook = {
+  id: 100,
+  title: 'The Best Book',
+  author: 'Kate',
+  genre: 'Classic',
+  publishing_details: '2022',
+  edition: 'First',
+  isbn: '4871873005',
+  summary: 'This is the best book in the world!',
+  condition: 'Well read',
+  image:
+    'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
+  user_id: 2,
+  status: 'active',
+  rating: '10',
+}
+
+describe('POST /api/v1/home/add', () => {
+  it('saves a new book to the database', () => {
+    addBook.mockReturnValue(Promise.resolve(fakeBook))
+    expect.assertions(4)
+    return request(server)
+      .post('/api/v1/home/add')
+      .send(fakeBook)
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(addBook).toHaveBeenCalledWith(fakeBook)
+        expect(res.body).toEqual(fakeBook)
+        expect(res.body.id).toBe(100)
+      })
+  })
+  it('can fail and return an error message', () => {
+    addBook.mockImplementation(() => Promise.reject(new Error('fail')))
+    return request(server)
+      .post('/api/v1/home/add')
+      .send(fakeBook)
+      .then((res) => {
+        expect.assertions(1)
+        expect(res.status).toBe(500)
       })
   })
 })

@@ -13,4 +13,16 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/add', (req, res) => {
+  const book = req.body
+  db.addBook(book)
+    .then((newBook) => {
+      res.json(newBook)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router
