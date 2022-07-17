@@ -1,6 +1,12 @@
-import { SET_BOOKS, SET_BOOKS_ERROR, fetchBooks } from '../home'
+import {
+  SET_BOOKS,
+  SET_BOOKS_ERROR,
+  POST_BOOK,
+  fetchBooks,
+  addBook,
+} from '../home'
 
-import { getBooksData } from '../../apis/home'
+import { getBooksData, saveBook } from '../../apis/home'
 
 jest.mock('../../apis/home')
 
@@ -70,6 +76,48 @@ describe('fetchBooks', () => {
       expect(fakeDispatch).toHaveBeenCalledWith({
         type: SET_BOOKS_ERROR,
         payload: 'Error!',
+      })
+    })
+  })
+})
+
+describe('addBook', () => {
+  it('dispatches data from POST_BOOK on success', () => {
+    const fakeBook = {
+      id: 2,
+      title: "Harry Potter and the Philosopher's Stone",
+      author: 'J.K. Rowling',
+      genre: 'Fantasy',
+      publishing_details: 'Bloomsbury (UK) 1997',
+      edition: 'First',
+      isbn: '0-7475-3269-9',
+      summary:
+        "It is a story about Harry Potter, an orphan brought up by his aunt and uncle because his parents were killed when he was a baby. Harry is unloved by his uncle and aunt but everything changes when he is invited to join Hogwarts School of Witchcraft and Wizardry and he finds out he's a wizard.",
+      condition: 'Pristine',
+      image:
+        'https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg',
+      user_id: 2,
+      status: 'active',
+      rating: '',
+    }
+    expect.assertions(1)
+    saveBook.mockReturnValue(Promise.resolve(fakeBook))
+
+    return addBook()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: POST_BOOK,
+        payload: fakeBook,
+      })
+    })
+  })
+
+  it('dispatches SET_BOOKS_ERROR on failure', () => {
+    expect.assertions(1)
+    saveBook.mockImplementation(() => Promise.reject(new Error('errorMessage')))
+    return addBook()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: SET_BOOKS_ERROR,
+        payload: 'errorMessage',
       })
     })
   })

@@ -1,4 +1,4 @@
-import { SET_BOOKS, SET_BOOKS_ERROR } from '../actions/home'
+import { SET_BOOKS, SET_BOOKS_ERROR, POST_BOOK } from '../actions/home'
 
 const initialState = {
   content: null,
@@ -17,6 +17,11 @@ const home = (state = initialState, action) => {
       return {
         content: null,
         error: payload,
+      }
+    case POST_BOOK:
+      return {
+        content: [...state, payload],
+        error: null,
       }
 
     default:
