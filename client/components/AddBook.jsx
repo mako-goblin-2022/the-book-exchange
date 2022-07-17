@@ -1,12 +1,8 @@
-
 import React, {useState} from 'react'
-
-import { Link, useNavigate } from 'react-router-dom'
-
+import {  useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
-
 import {addBook} from '../actions/home'
-
+import styles from '../styles/forms.module.scss'
 const initialFormData = {
   title: '',
   author: '',
@@ -48,7 +44,7 @@ const AddBook = () => {
 
  
   return (
-    <>
+    <div>
 
       <h2>Add new Book</h2>
       <form onSubmit={handleSubmit}>
@@ -56,6 +52,7 @@ const AddBook = () => {
           Title:
           <input
             id="title"
+            type='text'
             onChange={handleChange}
             value={form.title}
             name="title"
@@ -65,6 +62,7 @@ const AddBook = () => {
           Author:
           <input
             id="author"
+            type='text'
             onChange={handleChange}
             value={form.author}
             name="author"
@@ -74,6 +72,7 @@ const AddBook = () => {
           Genre:
           <input
             id="genre"
+            type='text'
             onChange={handleChange}
             value={form.genre}
             name="genre"
@@ -83,6 +82,7 @@ const AddBook = () => {
           Publishing Details:
           <input
             id="publishing_details"
+            type='text'
             onChange={handleChange}
             value={form.publishing_details}
             name="publishing_details"
@@ -92,6 +92,7 @@ const AddBook = () => {
           Edition:
           <input
             id="edition"
+            type='text'
             onChange={handleChange}
             value={form.edition}
             name="edition"
@@ -101,6 +102,7 @@ const AddBook = () => {
           ISBN:
           <input
             id="isbn"
+            type='text'
             onChange={handleChange}
             value={form.isbn}
             name="isbn"
@@ -119,6 +121,7 @@ const AddBook = () => {
           Condition:
           <input
             id="condition"
+            type='text'
             onChange={handleChange}
             value={form.condition}
             name="condition"
@@ -128,6 +131,7 @@ const AddBook = () => {
           Image:
           <input
             id="image"
+            type='text'
             onChange={handleChange}
             value={form.image}
             name="image"
@@ -138,6 +142,7 @@ const AddBook = () => {
           Rating:
           <input
             id="rating"
+            type='text'
             onChange={handleChange}
             value={form.rating}
             name="rating"
@@ -147,15 +152,16 @@ const AddBook = () => {
           User Id:
           <input
             id="user_id"
+            type='text'
             onChange={handleChange}
             value={form.user_id}
             name="user_id"
           />
         </label>
-        <button>Add Book</button>
+        <button className={styles.editbutton}>Add Book</button>
       </form>
 
-    </>
+    </div>
   )
 }
 
