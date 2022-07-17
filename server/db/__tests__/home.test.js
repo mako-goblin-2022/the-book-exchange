@@ -48,13 +48,10 @@ const fakeBook = {
 
 describe('addBook', () => {
   test(`Testing book title`, () => {
-    return addBook(fakeBook, testDb)
-      .then((fakebook) => {
-        return testDb(`books`)
-      })
-      .then((newBook) => {
-        expect(newBook.title).toBe('The Best Book')
-        expect(newBook.rating).toBe('10')
-      })
+    return addBook(fakeBook, testDb).then((fakebook) => {
+      expect.assertions(2)
+      expect(fakebook.title).toBe('The Best Book')
+      expect(fakebook.rating).toBe('10')
+    })
   })
 })
