@@ -1,4 +1,4 @@
-import { getBooksData } from '../home'
+import { getBooksData, saveBook } from '../home'
 import nock from 'nock'
 
 const getBooksMockData = {
@@ -52,5 +52,35 @@ describe('/api/v1/home', () => {
       expect(res[0].title).toBe('Winnie-the-Pooh')
       scope.done()
     })
+  })
+})
+
+describe('POST/api/v1/home/add', () => {
+  it('adds one book', async () => {
+    const fakeBook = {
+      id: 1,
+      title: 'The Best Book',
+      author: 'Kate',
+      genre: 'Classic',
+      publishing_details: '2022',
+      edition: 'First',
+      isbn: '4871873005',
+      summary: 'This is the best book in the world!',
+      condition: 'Well read',
+      image:
+        'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
+      user_id: 2,
+      status: 'active',
+      rating: '10',
+    }
+    const scope = nock('http://localhost')
+      .post('/api/v1/home/add')
+      .reply(200, fakeBook)
+    const book = await saveBook(fakeBook)
+    expect.assertions(3)
+    expect(book).toHaveProperty('title')
+    expect(book.title).toBe('The Best Book')
+    expect(book).toEqual(fakeBook)
+    scope.done()
   })
 })

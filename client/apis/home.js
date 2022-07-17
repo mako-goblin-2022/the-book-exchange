@@ -9,12 +9,12 @@ export function getBooksData() {
 
 export function saveBook(bookBody) {
   return request
-    .post(`${homeApi}/add`)
+    .post(`${homeApi}add`)
     .send(bookBody)
     .then((res) => {
       return res.body
     })
-    .catch((res) => {
-      res.status(500)
-    })
+  // .catch((res) => {
+  //   res.status(500)
+  // })
 }
