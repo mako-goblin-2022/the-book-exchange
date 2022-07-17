@@ -1,0 +1,50 @@
+form{ 
+  width:80%;
+  margin-left: 15px;
+
+
+input[type=text] {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #5B27D8;
+  margin:5px;
+  padding: 15px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f5f3f4;
+  border-radius: 10px;
+}
+
+textarea{
+ width: 100%;
+  font-family: 'Poppins', sans-serif;
+  border: none;
+  border-top: 2px solid #5B27D8;
+  border-bottom: 2px solid #5B27D8;
+  margin:5px;
+  padding: 15px;
+  background-color: #f5f3f4;
+  border-radius: 10px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: block;
+  font-weight: bold;
+}
+
+ .editbutton{
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid #5b27d8;
+  border-radius: 5px;
+  color: #5b27d8;
+  background-color: #f5f3f4;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-left: 15px;
+
+}
+ 
+ 
+}

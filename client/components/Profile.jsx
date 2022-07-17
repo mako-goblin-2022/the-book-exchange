@@ -51,6 +51,8 @@ function Profile() {
               role="button"
               tabIndex={0}
             >
+
+
               <img
                 className={styles.bookimg}
                 src={book.image}
@@ -62,7 +64,7 @@ function Profile() {
             </div>
           ))}
         </div>
-        <button onClick={() => navigate('/books/add')}>Add New Book</button>
+        <button onClick={() => navigate('/add')} className='primary-button'>Add New Book</button>
       </div>
     </>
   )
