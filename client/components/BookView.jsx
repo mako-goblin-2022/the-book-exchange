@@ -16,7 +16,7 @@ export default function BookView() {
     dispatch(fetchBook(id))
   }, [])
 
-  function handleClick(e){
+  function handleClick(){
     dispatch(updateBookStatus(id))
     alert(`${book.title} is yours! Please contact ${book.usersName} at ${book.usersEmail} to arrange pickup`)
     navigate("/")

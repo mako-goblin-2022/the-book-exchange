@@ -10,14 +10,12 @@ const editBookMockData = {
 
 describe('editBookListing', () => {
   test('returns updated Book object', () => {
-    //expect.assertions(2)
     const id = editBookMockData.id
     const scope = nock('http://localhost')
       .patch('/api/v1/books/edit/1')
       .reply(200, editBookMockData)
 
     return editBookListing(editBookMockData, id).then((res) => {
-      //console.log(res)
       expect(res).toEqual(editBookMockData)
       expect(scope.isDone()).toBe(true)
     })
