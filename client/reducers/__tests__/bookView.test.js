@@ -1,5 +1,5 @@
 import book from '../bookView'
-import { SET_BOOK, updatebook } from '../../actions/bookView'
+import { SET_BOOK, updatebook, saveBook } from '../../actions/bookView'
 
 const fakeBook = {
   id: 1,
@@ -40,7 +40,7 @@ describe('returns the action payload for the type SET_BOOK', () => {
   })
 })
 
-describe('it updates a book listing', () => {
+describe('UPDATE_BOOK', () => {
   test('it updates a book listing', () => {
     const oldState = {
       id: 1,
