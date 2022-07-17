@@ -43,7 +43,7 @@ const fakeStore = {
 
 //TODO test
 describe("<EditBook />", () => {
-  it('renders an h2 element that says "Edit the book below"', () => {
+  it('renders an h2 element that says "Edit the book below"',() => {
     expect.assertions(1)
     render
     (<Provider store={fakeStore}>
