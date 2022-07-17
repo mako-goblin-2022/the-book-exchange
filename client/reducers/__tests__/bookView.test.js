@@ -1,5 +1,5 @@
 import book from '../bookView'
-import { SET_BOOK } from '../../actions/bookView'
+import { SET_BOOK, updatebook } from '../../actions/bookView'
 
 const fakeBook = {
   id: 1,
@@ -37,5 +37,22 @@ describe('returns the action payload for the type SET_BOOK', () => {
     const outputState = book(undefined, {})
     expect.assertions(1)
     expect(outputState).toEqual(initialState)
+  })
+})
+
+describe('it updates a book listing', () => {
+  test('it updates a book listing', () => {
+    const oldState = {
+      id: 1,
+      title: 'The Best Book',
+      author: 'Kate',
+    }
+    const action = updatebook(
+      { title: 'The Best Book', author: 'Mandy' },
+      oldState.id
+    )
+    const newState = book({ ...oldState }, action)
+    expect(newState.author).toBe('Mandy')
+    expect(newState.title).toBe('The Best Book')
   })
 })
