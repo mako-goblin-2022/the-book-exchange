@@ -5,18 +5,22 @@ function getUsers(db = connection) {
 }
 
 function updateUser(auth0Id, formUserData, db = connection) {
-  return db('users').where('auth0_id', auth0Id).insert(formUserData)
+  return db('users').where('id', auth0Id).insert(formUserData)
 }
 
 function createUser(user, db = connection) {
-  return db('users').insert(user)
+  return db('users').insert({
+    id: user.auth0Id,
+    name: user.name,
+    location: user.location,
+    favourite_genre: user.favouriteGenre,
+    trading_tokens: 1,
+    image: user.image,
+  })
 }
 
 function userExists(auth0Id, db = connection) {
-  return db('users')
-    .count('auth0_id as n')
-    .where('auth0_id', auth0Id)
-    .then((count) => count[0].n > 0)
+  return db('users').where('id', auth0Id).select().first()
 }
 
 module.exports = {
