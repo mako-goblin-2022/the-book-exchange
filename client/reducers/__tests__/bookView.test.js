@@ -24,7 +24,7 @@ describe('returns the action payload for the type SET_BOOK', () => {
       type: SET_BOOK,
       payload: fakeBook,
     }
-    const initialState = []
+    const initialState = {}
     const expectedState = fakeBook
     const outputState = book(initialState, action)
     expect.assertions(3)
@@ -33,7 +33,7 @@ describe('returns the action payload for the type SET_BOOK', () => {
     expect(outputState.title).toContain('The Best Book')
   })
   it('returns the default initial state for an undefined state and no action type', () => {
-    const initialState = []
+    const initialState = {}
     const outputState = book(undefined, {})
     expect.assertions(1)
     expect(outputState).toEqual(initialState)

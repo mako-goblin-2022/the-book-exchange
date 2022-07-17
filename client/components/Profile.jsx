@@ -64,7 +64,7 @@ function Profile() {
             </div>
           ))}
         </div>
-        <button onClick={() => navigate('/books/add')} className='primary-button'>Add New Book</button>
+        <button onClick={() => navigate('/add')} className='primary-button'>Add New Book</button>
       </div>
     </>
   )
