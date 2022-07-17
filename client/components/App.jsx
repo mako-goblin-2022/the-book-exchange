@@ -12,16 +12,18 @@ import AddBook from './AddBook'
 function App() {
   return (
     <>
+     <Header />
       <section className="main">
-        <Header />
+       
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path={'/profile/:id'} element={<Profile />} />    
           <Route path={'/books/:id'} element={<BookView />} />
           <Route path={'/add'} element={<AddBook />} />
         </Routes>
-        <Footer />
+        
       </section>
+      <Footer />
     </>
   )
 }
