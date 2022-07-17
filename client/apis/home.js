@@ -14,7 +14,4 @@ export function saveBook(bookBody) {
     .then((res) => {
       return res.body
     })
-  // .catch((res) => {
-  //   res.status(500)
-  // })
 }
