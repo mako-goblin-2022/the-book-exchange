@@ -51,6 +51,8 @@ function Profile() {
               role="button"
               tabIndex={0}
             >
+
+
               <img
                 className={styles.bookimg}
                 src={book.image}

@@ -2,7 +2,7 @@ const request = require('supertest')
 const server = require('../../server')
 jest.mock('../../db/bookView')
 
-const { getBookDetails } = require('../../db/bookView')
+const { getBookDetails, updateBook } = require('../../db/bookView')
 
 const fakeBook = {
   id: 1,
@@ -38,6 +38,30 @@ describe('GET /api/v1/books', () => {
       .get('/api/v1/books/1')
       .then((res) => {
         expect(res.status).toBe(500)
+      })
+  })
+})
+
+const fakeupdate = {
+  title: 'bob was here',
+}
+describe('PATCH /api/v1/books/edit/:id', () => {
+  it('gets a 200 status after update', () => {
+    updateBook.mockReturnValue(Promise.resolve(fakeupdate))
+    return request(server)
+      .patch('/api/v1/books/edit/' + fakeBook.id)
+      .then((res) => expect(res.status).toBe(200))
+  })
+  it('fails and returns 500', () => {
+    updateBook.mockImplementation(() =>
+      Promise.reject(new Error('Internal server Error'))
+    )
+    expect.assertions(2)
+    return request(server)
+      .patch('/api/v1/books/edit/2')
+      .then((res) => {
+        expect(res.status).toBe(500)
+        expect(res.text).toContain('Error')
       })
   })
 })
