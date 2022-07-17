@@ -142,6 +142,15 @@ const AddBook = () => {
             name="rating"
           />
         </label>
+        <label htmlFor="user_id" >
+          User Id:
+          <input
+            id="user_id"
+            onChange={handleChange}
+            value={form.user_id}
+            name="user_id"
+          />
+        </label>
         <button>Add Book</button>
       </form>
 
