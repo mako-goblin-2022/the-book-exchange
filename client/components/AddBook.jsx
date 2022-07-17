@@ -132,6 +132,7 @@ const AddBook = () => {
             value={form.image}
             name="image"
           />
+          <input type='file'/>
         </label>
         <label htmlFor="rating" >
           Rating:
