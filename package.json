@@ -78,6 +78,7 @@
   "dependencies": {
     "express": "^4.17.2",
     "knex": "^2.1.0",
+    "multer": "^1.4.5-lts.1",
     "nock": "^13.2.8",
     "pg": "^8.7.1",
     "sqlite3": "^5.0.8",
