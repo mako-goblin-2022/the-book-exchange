@@ -7,7 +7,7 @@ import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-  
+
   //HARD CODE USER ID UNTIL AUTH IS LINKED
   const loggedinUser = 1
 
@@ -40,7 +40,7 @@ export default function BookView() {
             <p>By {book.author}</p>
             <p>Rating: {book.rating}</p>
             <p>Genre: {book.genre}</p>
-            <p>Publishing details: {book.publishing_details}</p>
+            <p>Publishing details: {book.publishingDetails}</p>
             <p>Edition: {book.edition}</p>
             <p>ISBN: {book.isbn}</p>
             <p>Summary: {book.summary}</p>

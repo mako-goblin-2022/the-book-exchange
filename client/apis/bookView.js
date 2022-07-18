@@ -14,15 +14,9 @@ export function getBook(id) {
     })
 }
 
-//the OG function to update book status
-// export function changeBookStatus(id) {
-//   return request.patch(`${serverUrl}/books/status/${id}`)
-// }
-
 //Updating book status function to include newOwnerId and Current OwnerId to process a full transaction
 
 export function changeBookStatus(id, newOwnerId, currentOwnerId) {
-  console.log('API', newOwnerId, currentOwnerId)
   return request
     .patch(`${serverUrl}/books/status/${id}`)
     .send({ newOwnerId: newOwnerId, currentOwnerId: currentOwnerId })
