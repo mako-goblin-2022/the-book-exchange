@@ -1,4 +1,4 @@
-import { getBooksData, saveBook } from '../home'
+import { getBooksData, saveBook, searchBooksData } from '../home'
 import nock from 'nock'
 
 const getBooksMockData = {
@@ -82,5 +82,19 @@ describe('POST/api/v1/home/add', () => {
     expect(book.title).toBe('The Best Book')
     expect(book).toEqual(fakeBook)
     scope.done()
+  })
+})
+
+describe('/api/v1/home/search', () => {
+  it('returns a book or books based on a search', () => {
+    const search = 'milne'
+    const scope = nock('http://localhost')
+      .get(`/api/v1/home/search?search=${search}`)
+      .reply(200, getBooksMockData)
+
+    return searchBooksData(search).then((res) => {
+      expect(res.title).toBe('Winnie-the-Pooh')
+      scope.done()
+    })
   })
 })
