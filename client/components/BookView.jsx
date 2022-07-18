@@ -39,7 +39,7 @@ export default function BookView() {
             <p>ISBN: {book.isbn}</p>
             <p>Summary: {book.summary}</p>
             <p>Condition: {book.condition}</p>
-            <p>Trader: {book.usersName}</p>
+            <p>Trader: {book.usersName} ||  Location: {book.usersLocation}</p>
           </div>
           <button onClick={handleClick} className='primary-button'>Request book</button>
           <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button>

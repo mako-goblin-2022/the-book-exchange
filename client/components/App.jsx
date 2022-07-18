@@ -6,13 +6,10 @@ import Footer from './Footer'
 import Home from './Home'
 import Profile from './Profile'
 import BookView from './BookView'
-<<<<<<< HEAD
 import Nav from './Nav'
 import Registration from './Registration'
 import About from './About'
-=======
 import EditBook from './EditBook'
->>>>>>> main
 import AddBook from './AddBook'
 
 import { cacheUser } from '../auth0-utils'
