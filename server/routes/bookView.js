@@ -18,7 +18,7 @@ router.patch('/status/:id', (req, res) => {
   const id = req.params.id
   const newOwnerId = req.body.newOwnerId
   const currentOwnerId = req.body.currentOwnerId
-
+  console.log('route', id, req.body)
   db.transaction(id, newOwnerId, currentOwnerId)
     .then((data) => {
       res.sendStatus(200)

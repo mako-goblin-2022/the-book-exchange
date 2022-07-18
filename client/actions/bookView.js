@@ -37,6 +37,7 @@ export function fetchBook(id) {
 
 //NEW update book status func to process full transaction
 export function updateBookStatus(id, newOwnerId, currentOwnerId) {
+  console.log('action', newOwnerId, currentOwnerId)
   return (dispatch) => {
     return changeBookStatus(id, newOwnerId, currentOwnerId).then((book) => {
       dispatch(setStatus())

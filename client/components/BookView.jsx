@@ -7,7 +7,9 @@ import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-  // const user = hardcode
+  
+  //HARD CODE USER ID UNTIL AUTH IS LINKED
+  const loggedinUser = 1
 
   console.log(book)
   const navigate = useNavigate()
@@ -19,7 +21,9 @@ export default function BookView() {
   }, [])
 
   function handleClick(e){
-    dispatch(updateBookStatus(id))
+    const newOwnerId = loggedinUser
+    const currentOwnerId = book.userId
+    dispatch(updateBookStatus(id, newOwnerId, currentOwnerId))
     alert(`${book.title} is yours! Please contact ${book.usersName} at ${book.usersEmail} to arrange pickup`)
     navigate("/")
     

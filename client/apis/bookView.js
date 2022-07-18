@@ -22,10 +22,11 @@ export function getBook(id) {
 //Updating book status function to include newOwnerId and Current OwnerId to process a full transaction
 
 export function changeBookStatus(id, newOwnerId, currentOwnerId) {
+  console.log('API', newOwnerId, currentOwnerId)
   return request
     .patch(`${serverUrl}/books/status/${id}`)
-    .send(newOwnerId, currentOwnerId)
-    .catch((res) => {
-      res.status(500)
+    .send({ newOwnerId: newOwnerId, currentOwnerId: currentOwnerId })
+    .catch((e) => {
+      console.log(e)
     })
 }
