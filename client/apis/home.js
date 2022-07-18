@@ -8,7 +8,7 @@ export function getBooksData() {
 }
 
 export function saveBook(bookBody) {
-  console.log('save', bookBody)
+  //console.log('save', bookBody)
   return request
     .post(`${homeApi}add`)
     .send(bookBody)
@@ -17,7 +17,7 @@ export function saveBook(bookBody) {
     })
 }
 export function saveimageBook(bookBody) {
-  console.log('Saveimg', bookBody)
+  //console.log('Saveimg', bookBody)
   return request
     .post(`${homeApi}add-upload`)
     .send(bookBody)

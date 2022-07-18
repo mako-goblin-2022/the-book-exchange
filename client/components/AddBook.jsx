@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addBook,addimageBook } from '../actions/home'
@@ -24,8 +24,12 @@ const AddBook = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState(initialFormData)
-  const [isURL, setURL] = useState('none')
+  const [isURL, setURL] = useState('yes')
 
+  useEffect(()=>{
+
+      document.getElementById('imageupload').style.display = "none"
+  },[])
   function handleChange(event) {
     const { name, value } = event.target
     const newForm = {
@@ -37,8 +41,8 @@ const AddBook = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
+    
     const formData = new FormData()
-
     if (isURL === 'yes') {
       dispatch(addBook(form))
     } else {
@@ -47,10 +51,25 @@ const AddBook = () => {
       )
       dispatch(addimageBook(formData))
     }
-    navigate('/')
+    navigate('/')  
   }
   function handleimagechange(e) {
     setURL(e.target.value)
+    if (isURL ==='no')
+    {
+      document.getElementById('imageurl').style.display = "block"
+      document.getElementById('imageupload').style.display = "none"
+      console.log('yes')
+      //change imageurl to visibly
+    }
+    else if (isURL ==='yes')
+    {
+      //cahnge the other
+      console.log('no')
+      document.getElementById('imageurl').style.display = "none"
+      document.getElementById('imageupload').style.display = "block"
+     
+    }
   }
   function handleiChange(e) {
     const newForm = {
@@ -163,22 +182,24 @@ const AddBook = () => {
             onChange={handleimagechange}
           />
           <label htmlFor="upload">Image Upload</label>
-          {isURL === 'yes' ? (
+          
             <input
-              id="image"
+              id="imageurl"
               type="text"
               onChange={handleChange}
-              value={form.image}
+              value={form.image||""}
               name="image"
+              // {isURL === 'yes' ? ( visibly:true   ) : ()}
             />
-          ) : (
+       
             <input
+            id='imageupload'
               className="primary-button"
               type="file"
               name="image"
               onChange={handleiChange}
             />
-          )}
+          
         </div>
 
         <label htmlFor="rating">
