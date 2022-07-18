@@ -6,9 +6,13 @@ import Footer from './Footer'
 import Home from './Home'
 import Profile from './Profile'
 import BookView from './BookView'
+<<<<<<< HEAD
 import Nav from './Nav'
 import Registration from './Registration'
 import About from './About'
+=======
+import EditBook from './EditBook'
+>>>>>>> main
 import AddBook from './AddBook'
 
 import { cacheUser } from '../auth0-utils'
@@ -29,6 +33,7 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path={'/profile/:id'} element={<Profile />} />
           <Route path={'/books/:id'} element={<BookView />} />
+          <Route path={'/edit/:id'} element={<EditBook />}/>
           <Route path={'/add'} element={<AddBook />} />
         </Routes>
       </section>

@@ -1,6 +1,6 @@
-import { fetchBook, SET_BOOK } from '../bookView'
+import { fetchBook, SET_BOOK, UPDATE_BOOK, saveBook } from '../bookView'
 
-import { getBook } from '../../apis/bookView'
+import { getBook, editBookListing } from '../../apis/bookView'
 
 jest.mock('../../apis/bookView')
 
@@ -38,6 +38,17 @@ describe('fetchBook', () => {
     return fetchBook()(fakeDispatch).then(() => {
       expect(fakeDispatch).toHaveBeenCalledWith({
         type: SET_BOOK,
+        payload: fakeBook,
+      })
+    })
+  })
+})
+describe('saveBook', () => {
+  it('dispatches UPDATE_BOOK on succeess', () => {
+    editBookListing.mockReturnValue(Promise.resolve())
+    return saveBook(fakeBook)(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: UPDATE_BOOK,
         payload: fakeBook,
       })
     })
