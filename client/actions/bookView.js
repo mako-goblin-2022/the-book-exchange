@@ -25,9 +25,20 @@ export function fetchBook(id) {
   }
 }
 
-export function updateBookStatus(id) {
+//OG book status update func
+// export function updateBookStatus(id) {
+//   return (dispatch) => {
+//     return changeBookStatus(id).then((book) => {
+//       dispatch(setStatus())
+//       return null
+//     })
+//   }
+// }
+
+//NEW update book status func to process full transaction
+export function updateBookStatus(id, newOwnerId, currentOwnerId) {
   return (dispatch) => {
-    return changeBookStatus(id).then((book) => {
+    return changeBookStatus(id, newOwnerId, currentOwnerId).then((book) => {
       dispatch(setStatus())
       return null
     })
