@@ -25,7 +25,6 @@ const AddBook = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState(initialFormData)
-  const [image,setimage] = useState()
   const [isURL ,setURL] = useState('none')
 
   function handleChange (event) {
@@ -38,15 +37,31 @@ const AddBook = () => {
   }
 
   function handleSubmit(event) {
+    const formData = new FormData()
+ Object.entries(form).forEach(([key,value])=>
+formData.append(key,value)
+ )
+   
     event.preventDefault()
-    //FormData.append('image',image)
+//     formData.append('image',form.image)
+// formData.append('title',form.title)
+    //formData.append(form)
     console.log(form)
-    dispatch(addBook(form))
-    navigate('/')
+    dispatch(addBook(formData))
+   // navigate('/')
     
   }
   function handleimagechange(e){
     setURL(e.target.value)
+  }
+  function handleiChange(e){
+    
+    const newForm = {
+      ...form,
+      image: e.target.files[0]
+    }
+    setForm(newForm)
+    console.log(e.target.files[0])
   }
  
   return (
@@ -152,7 +167,7 @@ const AddBook = () => {
                 name="image"
               />
     :
-     <input  className='primary-button' type='file' name='image' value={form.image} onChange={handleChange}/>
+     <input  className='primary-button' type='file' name='image' onChange={handleiChange}/>
         
     }
         </div>
