@@ -8,6 +8,7 @@ export function getBooksData() {
 }
 
 export function saveBook(bookBody) {
+  console.log(bookBody)
   return request
     .post(`${homeApi}add`)
     .send(bookBody)

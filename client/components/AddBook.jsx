@@ -25,6 +25,8 @@ const AddBook = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState(initialFormData)
+  const [image,setimage] = useState()
+  const [isURL ,setURL] = useState('none')
 
   function handleChange (event) {
     const { name, value } = event.target
@@ -37,17 +39,21 @@ const AddBook = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
+    //FormData.append('image',image)
+    console.log(form)
     dispatch(addBook(form))
     navigate('/')
     
   }
-
+  function handleimagechange(e){
+    setURL(e.target.value)
+  }
  
   return (
     <div>
 
       <h2>Add new Book</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType='multipart/form-data' method='post'>
         <label htmlFor="title">
           Title:
           <input
@@ -127,17 +133,34 @@ const AddBook = () => {
             name="condition"
           />
         </label>
-        <label htmlFor="image" >
-          Image:
-          <input
-            id="image"
-            type='text'
-            onChange={handleChange}
-            value={form.image}
-            name="image"
-          />
-          <input type='file'/>
-        </label>
+        <label htmlFor="image" >Image </label>
+        <div>
+
+        <input type={'radio'} name='url' checked={isURL ==='yes'} value='yes' onChange={handleimagechange}/>
+<label htmlFor='url'>Image URL</label>
+
+<input type={'radio'} name='upload' checked={isURL ==='no'} value='no' onChange={handleimagechange}/>
+<label htmlFor='upload'>Image Upload</label>
+    {isURL === 'yes' ?
+    
+              
+              <input
+                id="image"
+                type='text'
+                onChange={handleChange}
+                value={form.image}
+                name="image"
+              />
+    :
+     <input  className='primary-button' type='file' name='image' value={form.image} onChange={handleChange}/>
+        
+    }
+        </div>
+
+
+        
+        
+          
         <label htmlFor="rating" >
           Rating:
           <input
