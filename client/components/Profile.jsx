@@ -68,7 +68,7 @@ function Profile() {
               />
               <div className={styles.caption}>
                 <p>{book.title + ' \n By: ' + book.author}</p>
-                {/* <button onClick={() => navigate('/edit/' + book.id)} className='primary-button'>Edit Book</button> */}
+                <button className='primary-button'>Edit Book</button>
               </div>
             </div>
           ))}
@@ -78,12 +78,5 @@ function Profile() {
     </>
   )
 }
-// id: 1,
-// name: 'Anette',
-// location: 'Mars',
-// favourite_genre: 'Animation|Drama',
-// trading_tokens: 1,
-// email: 'aswancott0@blogtalkradio.com',
-// image:
 
 export default Profile
