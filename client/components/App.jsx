@@ -31,7 +31,7 @@ function App() {
           <Route path={'/profile/:id'} element={<Profile />} />
           <Route path={'/books/:id'} element={<BookView />} />
           <Route path={'/edit/:id'} element={<EditBook />}/>
-          <Route path={'/add'} element={<AddBook />} />
+          <Route path={'/:id/add'} element={<AddBook />} />
         </Routes>
       </section>
       <Footer />

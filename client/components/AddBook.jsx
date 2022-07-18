@@ -1,25 +1,37 @@
 import React, {useState} from 'react'
-import {  useNavigate } from 'react-router-dom'
+import {  useNavigate, useParams } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {addBook} from '../actions/home'
 import styles from '../styles/forms.module.scss'
-const initialFormData = {
-  title: '',
-  author: '',
-  genre: '',
-  publishing_details: '',
-  edition: '',
-  isbn: '',
-  summary: '',
-  condition: '',
-  image: '',
-  user_id: '',
-  status: 'active',
-  rating: '',
 
-}
+
+
+
+
 
 const AddBook = () => {
+
+
+  const params = useParams()
+  const id = params.id
+
+  const initialFormData = {
+    title: '',
+    author: '',
+    genre: '',
+    publishing_details: '',
+    edition: '',
+    isbn: '',
+    summary: '',
+    condition: '',
+    image: '',
+    user_id: id,
+    status: 'active',
+    rating: '',
+  
+  }
+
+ 
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -37,6 +49,7 @@ const AddBook = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
+    
     dispatch(addBook(form))
     navigate('/')
     
@@ -147,16 +160,16 @@ const AddBook = () => {
             name="rating"
           />
         </label>
-        <label htmlFor="user_id" >
+        {/* <label htmlFor="user_id" >
           User Id:
           <input
             id="user_id"
             type='text'
             onChange={handleChange}
-            value={form.user_id}
+            value={id}
             name="user_id"
           />
-        </label>
+        </label> */}
         <button className={styles.editbutton}>Add Book</button>
       </form>
 

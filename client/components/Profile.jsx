@@ -48,12 +48,14 @@ function Profile() {
             </p>
           </div>
         </div>
+        <button onClick={() => navigate(`/${id}/add`)} className='primary-button'>Add New Book</button>
+        <br></br>
         <div className={styles.row}>
           {chosenBooks.map((book) => (
             <div
               className={[styles.tokenContainer, styles.column]}
               key={book.id}
-              onMouseDown={() => navigate('/books/' + book.id)}
+              onMouseDown={() => navigate('/edit/' + book.id)}
               role="button"
               tabIndex={0}
             >
@@ -66,11 +68,12 @@ function Profile() {
               />
               <div className={styles.caption}>
                 <p>{book.title + ' \n By: ' + book.author}</p>
+                {/* <button onClick={() => navigate('/edit/' + book.id)} className='primary-button'>Edit Book</button> */}
               </div>
             </div>
           ))}
         </div>
-        <button onClick={() => navigate('/add')} className='primary-button'>Add New Book</button>
+        
       </div>
     </>
   )
