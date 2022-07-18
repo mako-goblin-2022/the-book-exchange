@@ -131,16 +131,16 @@ describe('GET /api/v1/home/search', () => {
     searchBooks.mockReturnValue(Promise.resolve(fakeBook))
     expect.assertions(2)
     return request(server)
-      .get('/api/v1/home/search')
+      .get(`/api/v1/home/search?search=${search}`)
       .then((res) => {
         expect(res.status).toBe(200)
-        expect(searchBooks).toHaveBeenCalledWith(fakeBook)
+        expect(searchBooks).toHaveBeenCalledWith(search)
       })
   })
   it('can fail and return an error message', () => {
     searchBooks.mockImplementation(() => Promise.reject(new Error('fail')))
     return request(server)
-      .get('/api/v1/home/search')
+      .get(`/api/v1/home/search?search=kate`)
       .then((res) => {
         expect.assertions(1)
         expect(res.status).toBe(500)
