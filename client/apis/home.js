@@ -17,6 +17,7 @@ export function saveBook(bookBody) {
 }
 
 export function searchBooksData(search) {
+  console.log('api:', search)
   return request
     .get(`${homeApi}search`)
     .send(search)
