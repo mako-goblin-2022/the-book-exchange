@@ -49,8 +49,6 @@ export default function BookView() {
             {book.userId === book.traderId &&
             <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button>}
           </IfAuthenticated>
-      
-          {/* <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button> */}
       </div>
       <div className = 'back-button'>
         <Link to={'/'}>

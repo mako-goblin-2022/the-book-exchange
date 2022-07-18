@@ -160,16 +160,6 @@ const AddBook = () => {
             name="rating"
           />
         </label>
-        {/* <label htmlFor="user_id" >
-          User Id:
-          <input
-            id="user_id"
-            type='text'
-            onChange={handleChange}
-            value={id}
-            name="user_id"
-          />
-        </label> */}
         <button className={styles.editbutton}>Add Book</button>
       </form>
 

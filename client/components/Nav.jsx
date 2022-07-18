@@ -8,7 +8,6 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 function Nav() {
 
   const id = useAuth0().user?.sub
-  // TODO: call the useAuth0 hook and destructure logout and loginWithRedirect
   const { logout, loginWithRedirect } = useAuth0()
   function handleLogoff(e) {
     e.preventDefault()
