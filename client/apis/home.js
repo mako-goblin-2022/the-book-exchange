@@ -15,3 +15,12 @@ export function saveBook(bookBody) {
       return res.body
     })
 }
+
+export function searchBooksData(search) {
+  return request
+    .get(`${homeApi}search`)
+    .send(search)
+    .then((res) => {
+      return res.body.books
+    })
+}
