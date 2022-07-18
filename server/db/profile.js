@@ -3,7 +3,7 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 
 function getProfile(id, db = connection) {
-  return db('users').select().where('auth0_id', id).first()
+  return db('users').select().where('id', id).first()
 }
 
 function getBooksByUserId(user_id, db = connection) {

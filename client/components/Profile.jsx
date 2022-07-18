@@ -1,18 +1,21 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate} from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import { fetchBooks, fetchProfile } from '../actions/profile'
 import styles from '../styles/Profile.module.scss'
 
 function Profile() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
- 
+  const params = useParams()
 
   const FullState = useSelector((state) => {
     return state.profileReducer})
 
-    
+    console.log(FullState)
+
+    const id = params.id
+   
  
   useEffect(() => {
     dispatch(fetchProfile(id))
@@ -21,6 +24,7 @@ function Profile() {
   useEffect(() => {
     dispatch(fetchBooks(id))
   }, [])
+
   const profile = FullState.profile
 
   const chosenBooks = FullState.books
