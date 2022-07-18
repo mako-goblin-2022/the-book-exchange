@@ -2,12 +2,12 @@ import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useParams, Link, useNavigate } from 'react-router-dom'
 import styles from '../styles/BookView.module.scss'
+import { IfAuthenticated } from './Authenticated'
 
 import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-
   const navigate = useNavigate()
   const {id} = useParams()
   const dispatch = useDispatch()
@@ -39,10 +39,16 @@ export default function BookView() {
             <p>ISBN: {book.isbn}</p>
             <p>Summary: {book.summary}</p>
             <p>Condition: {book.condition}</p>
-            <p>Trader: {book.usersName}</p>
+            <p>Trader: {book.usersName} ||  Location: {book.usersLocation}</p>
           </div>
+         
+          <IfAuthenticated>
+            {book.userId !== book.traderId &&
           <button onClick={handleClick} className='primary-button'>Request book</button>
-          <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button>
+            }
+            {book.userId === book.traderId &&
+            <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button>}
+          </IfAuthenticated>
       </div>
       <div className = 'back-button'>
         <Link to={'/'}>

@@ -77,12 +77,16 @@
     "webpack-cli": "^4.9.2"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.8.0",
     "express": "^4.17.2",
     "knex": "^2.1.0",
     "nock": "^13.2.8",
     "pg": "^8.7.1",
     "sqlite3": "^5.0.8",
-    "superagent": "7.1.1"
+    "superagent": "7.1.1",
+    "express-jwt": "^6.1.0",
+    "express-jwt-authz": "^2.4.1",
+    "jwks-rsa": "^2.0.4"
   },
   "browserslist": "> 2%, not dead"
 }
