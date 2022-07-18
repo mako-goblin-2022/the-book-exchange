@@ -30,7 +30,6 @@ router.put('/', checkJwt, async (req, res) => {
 
 router.post('/', async (req, res) => {
   const { auth0Id, email, name, location, favouriteGenre, image } = req.body
-  console.log('route', req.body)
   const user = {
     auth0Id,
     name,

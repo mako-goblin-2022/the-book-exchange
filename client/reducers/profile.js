@@ -4,7 +4,6 @@ const initialState = { profile: {}, books: [] }
 
 const profileReducer = (state = initialState, action) => {
   const { type, payload } = action
-  // console.log('reducer', payload)
   switch (type) {
     case SET_PROFILE:
       return { ...state, profile: payload.profile }

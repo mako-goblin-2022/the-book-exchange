@@ -16,7 +16,6 @@ export function getBooksbyID(id) {
   return request
     .get(url + id + '/books')
     .then((res) => {
-      //  console.log('api:', res.body)
       return res.body
     })
     .catch((res) => res.status(500).send('server error'))

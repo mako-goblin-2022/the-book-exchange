@@ -55,7 +55,7 @@ function Profile() {
             <div
               className={[styles.tokenContainer, styles.column]}
               key={book.id}
-              onMouseDown={() => navigate('/edit/' + book.id)}
+              onMouseDown={() => navigate('/books/' + book.id)}
               role="button"
               tabIndex={0}
             >
@@ -68,7 +68,6 @@ function Profile() {
               />
               <div className={styles.caption}>
                 <p>{book.title + ' \n By: ' + book.author}</p>
-                <button className='primary-button'>Edit Book</button>
               </div>
             </div>
           ))}

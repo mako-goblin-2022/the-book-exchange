@@ -8,7 +8,6 @@ import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-
   const navigate = useNavigate()
   const {id} = useParams()
   const dispatch = useDispatch()
@@ -42,9 +41,15 @@ export default function BookView() {
             <p>Condition: {book.condition}</p>
             <p>Trader: {book.usersName} ||  Location: {book.usersLocation}</p>
           </div>
+         
           <IfAuthenticated>
+            {book.userId !== book.traderId &&
           <button onClick={handleClick} className='primary-button'>Request book</button>
+            }
+            {book.userId === book.traderId &&
+            <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button>}
           </IfAuthenticated>
+      
           {/* <button onClick={()=>navigate('/edit/'+book.id)} className='secondary-button'>Edit listing for {book.title}</button> */}
       </div>
       <div className = 'back-button'>
