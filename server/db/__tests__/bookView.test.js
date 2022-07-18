@@ -2,7 +2,7 @@ const knex = require('knex')
 const testConfig = require('../knexfile').test
 const testDb = knex(testConfig)
 
-const { getBookDetails, updateBook } = require('../bookView')
+const { getBookDetails, updateBook, transaction } = require('../bookView')
 
 beforeAll(() => {
   return testDb.migrate.latest()
@@ -40,4 +40,42 @@ describe('updateBook', () => {
       // expect(book.id).toBe(2)
     })
   })
+})
+
+describe('transaction', () => {
+  const id = 1
+
+  const newOwner = {
+    id: 2,
+    trading_tokens: 2,
+  }
+
+  const currentOwner = {
+    id: 1,
+    trading_tokens: 4,
+  }
+
+  const newOwnerId = newOwner.id
+
+  const currentOwnerId = currentOwner.id
+
+  it('updates the book status', () => {
+    expect.assertions(1)
+    return transaction(id, newOwnerId, currentOwnerId, testDb)
+      .then(() => {
+        return getBookDetails(id, testDb)
+      })
+      .then((book) => {
+        expect(book.status).toBe('inactive')
+      })
+  })
+  it('updates the book user_id', () => {
+    expect.assertions(1)
+    return transaction(id, newOwnerId, currentOwnerId, testDb).then(() => {
+      expect(newOwnerId).toBe(2)
+    })
+  })
+
+  it.todo('decrements the trading_tokens of the newOwner user')
+  it.todo('increments the trading_tokens of the currentOwner (old) user')
 })

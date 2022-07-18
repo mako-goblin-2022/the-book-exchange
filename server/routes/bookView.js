@@ -28,7 +28,7 @@ router.patch('/status/:id', (req, res) => {
   const newOwnerId = req.body.newOwnerId
   const currentOwnerId = req.body.currentOwnerId
   db.transaction(id, newOwnerId, currentOwnerId)
-    .then((data) => {
+    .then(() => {
       res.sendStatus(200)
     })
     .catch((err) => {
