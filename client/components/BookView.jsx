@@ -7,6 +7,7 @@ import {fetchBook, updateBookStatus } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
+  // const user = hardcode
 
   console.log(book)
   const navigate = useNavigate()
