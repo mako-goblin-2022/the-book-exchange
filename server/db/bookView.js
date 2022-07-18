@@ -26,7 +26,6 @@ function getBookDetails(id, db = connection) {
     .first()
 }
 
-// this function updates status from active to inactive, updates user_id and increments/decrements the user's book tokens
 function transaction(id, newOwnerId, currentOwnerId, db = connection) {
   return db('books')
     .where({ id })

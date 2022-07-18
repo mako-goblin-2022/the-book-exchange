@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {useParams, Link, useNavigate } from 'react-router-dom'
 import styles from '../styles/BookView.module.scss'
 
-import {fetchBook, updateBookStatus } from '../actions/bookView'
+import {fetchBook, sendTransactionData } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
@@ -19,10 +19,10 @@ export default function BookView() {
     dispatch(fetchBook(id))
   }, [])
 
-  function handleClick(e){
+  function handleClick(){
     const newOwnerId = loggedinUser
     const currentOwnerId = book.userId
-    dispatch(updateBookStatus(id, newOwnerId, currentOwnerId))
+    dispatch(sendTransactionData(id, newOwnerId, currentOwnerId))
     alert(`${book.title} is yours! Please contact ${book.usersName} at ${book.usersEmail} to arrange pickup`)
     navigate("/")
     
