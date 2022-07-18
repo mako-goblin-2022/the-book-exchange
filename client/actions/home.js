@@ -52,7 +52,6 @@ export function addBook(newBook) {
 }
 
 export function searchBooks(search) {
-  console.log('action:', search)
   return (dispatch) => {
     return searchBooksData(search)
       .then((books) => {

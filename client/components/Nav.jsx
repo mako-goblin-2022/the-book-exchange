@@ -32,7 +32,6 @@ function Nav() {
   const dispatch = useDispatch()
   function handleSubmit(e) {
     e.preventDefault()
-    console.log('component', search)
     dispatch(searchBooks(search))
     setSearch('')
   }

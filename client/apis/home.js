@@ -12,17 +12,12 @@ export function saveBook(bookBody) {
     .post(`${homeApi}add`)
     .send(bookBody)
     .then((res) => {
-      return res.body
+      return res.body.books
     })
 }
 
 export function searchBooksData(search) {
-  console.log('api:', search)
-  return request
-    .get(`${homeApi}search`)
-    .send(search)
-    .then((res) => {
-      console.log('api response:', res.body)
-      return res.body
-    })
+  return request.get(`${homeApi}search?search=${search}`).then((res) => {
+    return res.body
+  })
 }
