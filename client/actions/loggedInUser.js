@@ -17,7 +17,7 @@ export function clearLoggedInUser() {
 }
 
 export function sendUser(user) {
-  // console.log(user)
+  console.log('action', user)
   return (dispatch) => {
     return addUser(user).then(() => {
       dispatch(setLoggedInUser(user))

@@ -18,7 +18,7 @@ function App() {
   cacheUser(useAuth0)
   return (
     <>
-      <Header />
+      
       <section className="main">
         <Header />
         <Nav />

@@ -9,12 +9,14 @@ function updateUser(auth0Id, formUserData, db = connection) {
 }
 
 function createUser(user, db = connection) {
+  console.log('db', user)
   return db('users').insert({
     id: user.auth0Id,
     name: user.name,
     location: user.location,
     favourite_genre: user.favouriteGenre,
-    trading_tokens: 1,
+    trading_tokens: user.tradingTokens,
+    email: user.email,
     image: user.image,
   })
 }

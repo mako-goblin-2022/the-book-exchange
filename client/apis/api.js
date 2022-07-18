@@ -10,7 +10,7 @@ export function updateUser(user) {
 
 // to register a new user
 export async function addUser(user) {
-  console.log('adduser', user)
+  console.log('adduser api', user)
   return request
     .post(`/api/v1/auth`)
     .set('authorization', `Bearer ${user.token}`)

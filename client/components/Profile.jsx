@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { fetchBooks, fetchProfile } from '../actions/profile'
 import styles from '../styles/Profile.module.scss'
 
 function Profile() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  let { id } = useParams()
+ 
 
   const FullState = useSelector((state) => {
-    return state.profileReducer
-  })
+    return state.profileReducer})
+
+    
+ 
   useEffect(() => {
     dispatch(fetchProfile(id))
   }, [])
