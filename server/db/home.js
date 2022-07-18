@@ -29,6 +29,7 @@ function addBook(book, db = connection) {
 }
 
 function searchBooks(search, db = connection) {
+  console.log('db', 'search')
   return db('books')
     .whereLike('title', `%${search}%`)
     .orWhereLike('author', `%${search}%`)

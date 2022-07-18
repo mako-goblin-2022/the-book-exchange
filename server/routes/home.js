@@ -26,7 +26,8 @@ router.post('/add', (req, res) => {
 })
 
 router.get('/search', (req, res) => {
-  const search = req.query.search
+  const search = req.query
+  console.log('route:', search)
   db.searchBooks(search)
     .then((books) => {
       res.json(books)

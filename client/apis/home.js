@@ -22,6 +22,7 @@ export function searchBooksData(search) {
     .get(`${homeApi}search`)
     .send(search)
     .then((res) => {
-      return res.body.books
+      console.log('api response:', res.body)
+      return res.body
     })
 }
