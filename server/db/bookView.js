@@ -26,6 +26,22 @@ function getBookDetails(id, db = connection) {
     .first()
 }
 
-function updateStatus(id, db = connection) {
-  return db('books').where({ id }).update({ status: 'inactive' })
+function updateStatus(id, newOwnerId, currentOwnerId, db = connection) {
+  //include user id
+  return db('books')
+    .where({ id })
+    .update({ status: 'inactive' }, { user_id: newOwnerId }) //update book.user_id, newOwnerId
+    .then(() => {
+      return db('users')
+        .where('users.id', currentOwnerId)
+        .increment('trading_tokens', 1)
+    })
+    .then(() => {
+      db('users').where('users.id', newOwnerId).decrement('trading_tokens', 1)
+    })
 }
+
+//return users table
+//join books, users.id, book.userid
+//select user id, trading token
+//where user id, id
