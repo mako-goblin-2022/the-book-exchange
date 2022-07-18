@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import {  useNavigate } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import {addBook} from '../actions/home'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addBook,addimageBook } from '../actions/home'
 import styles from '../styles/forms.module.scss'
 const initialFormData = {
   title: '',
@@ -16,7 +16,6 @@ const initialFormData = {
   user_id: '',
   status: 'active',
   rating: '',
-
 }
 
 const AddBook = () => {
@@ -25,55 +24,52 @@ const AddBook = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState(initialFormData)
-  const [isURL ,setURL] = useState('none')
+  const [isURL, setURL] = useState('none')
 
-  function handleChange (event) {
+  function handleChange(event) {
     const { name, value } = event.target
     const newForm = {
       ...form,
-      [name]: value
+      [name]: value,
     }
     setForm(newForm)
   }
 
   function handleSubmit(event) {
-    const formData = new FormData()
- Object.entries(form).forEach(([key,value])=>
-formData.append(key,value)
- )
-   
     event.preventDefault()
-//     formData.append('image',form.image)
-// formData.append('title',form.title)
-    //formData.append(form)
-    console.log(form)
-    dispatch(addBook(formData))
-   // navigate('/')
-    
+    const formData = new FormData()
+
+    if (isURL === 'yes') {
+      dispatch(addBook(form))
+    } else {
+      Object.entries(form).forEach(([key, value]) =>
+        formData.append(key, value)
+      )
+      dispatch(addimageBook(formData))
+    }
+    navigate('/')
   }
-  function handleimagechange(e){
+  function handleimagechange(e) {
     setURL(e.target.value)
   }
-  function handleiChange(e){
-    
+  function handleiChange(e) {
     const newForm = {
       ...form,
-      image: e.target.files[0]
+      image: e.target.files[0],
     }
     setForm(newForm)
     console.log(e.target.files[0])
   }
- 
+
   return (
     <div>
-
       <h2>Add new Book</h2>
-      <form onSubmit={handleSubmit} encType='multipart/form-data' method='post'>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" method="post">
         <label htmlFor="title">
           Title:
           <input
             id="title"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.title}
             name="title"
@@ -83,7 +79,7 @@ formData.append(key,value)
           Author:
           <input
             id="author"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.author}
             name="author"
@@ -93,7 +89,7 @@ formData.append(key,value)
           Genre:
           <input
             id="genre"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.genre}
             name="genre"
@@ -103,17 +99,17 @@ formData.append(key,value)
           Publishing Details:
           <input
             id="publishing_details"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.publishing_details}
             name="publishing_details"
           />
         </label>
-        <label htmlFor="edition" >
+        <label htmlFor="edition">
           Edition:
           <input
             id="edition"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.edition}
             name="edition"
@@ -123,13 +119,13 @@ formData.append(key,value)
           ISBN:
           <input
             id="isbn"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.isbn}
             name="isbn"
           />
         </label>
-        <label htmlFor="summary" >
+        <label htmlFor="summary">
           Summary:
           <textarea
             id="summary"
@@ -138,59 +134,68 @@ formData.append(key,value)
             name="summary"
           />
         </label>
-        <label htmlFor="condition" >
+        <label htmlFor="condition">
           Condition:
           <input
             id="condition"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.condition}
             name="condition"
           />
         </label>
-        <label htmlFor="image" >Image </label>
+        <label htmlFor="image">Image </label>
         <div>
+          <input
+            type={'radio'}
+            name="url"
+            checked={isURL === 'yes'}
+            value="yes"
+            onChange={handleimagechange}
+          />
+          <label htmlFor="url">Image URL</label>
 
-        <input type={'radio'} name='url' checked={isURL ==='yes'} value='yes' onChange={handleimagechange}/>
-<label htmlFor='url'>Image URL</label>
-
-<input type={'radio'} name='upload' checked={isURL ==='no'} value='no' onChange={handleimagechange}/>
-<label htmlFor='upload'>Image Upload</label>
-    {isURL === 'yes' ?
-    
-              
-              <input
-                id="image"
-                type='text'
-                onChange={handleChange}
-                value={form.image}
-                name="image"
-              />
-    :
-     <input  className='primary-button' type='file' name='image' onChange={handleiChange}/>
-        
-    }
+          <input
+            type={'radio'}
+            name="upload"
+            checked={isURL === 'no'}
+            value="no"
+            onChange={handleimagechange}
+          />
+          <label htmlFor="upload">Image Upload</label>
+          {isURL === 'yes' ? (
+            <input
+              id="image"
+              type="text"
+              onChange={handleChange}
+              value={form.image}
+              name="image"
+            />
+          ) : (
+            <input
+              className="primary-button"
+              type="file"
+              name="image"
+              onChange={handleiChange}
+            />
+          )}
         </div>
 
-
-        
-        
-          
-        <label htmlFor="rating" >
+        <label htmlFor="rating">
           Rating:
           <input
             id="rating"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.rating}
             name="rating"
           />
         </label>
-        <label htmlFor="user_id" >
+        <label htmlFor="user_id">
           User Id:
           <input
             id="user_id"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.user_id}
             name="user_id"
@@ -198,10 +203,8 @@ formData.append(key,value)
         </label>
         <button className={styles.editbutton}>Add Book</button>
       </form>
-
     </div>
   )
 }
 
 export default AddBook
-
