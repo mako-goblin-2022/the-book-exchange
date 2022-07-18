@@ -28,7 +28,14 @@ function addBook(book, db = connection) {
     })
 }
 
+function searchBooks(search, db = connection) {
+  return db('books')
+    .whereLike('title', `%${search}%`)
+    .orWhereLike('author', `%${search}%`)
+}
+
 module.exports = {
   getBooks,
   addBook,
+  searchBooks,
 }
