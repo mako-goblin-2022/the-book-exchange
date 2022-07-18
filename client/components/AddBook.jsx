@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState , useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
@@ -17,8 +18,42 @@ const initialFormData = {
   status: 'active',
   rating: '',
 }
+=======
+import React, {useState} from 'react'
+import {  useNavigate, useParams } from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {addBook} from '../actions/home'
+import styles from '../styles/forms.module.scss'
+
+
+
+
+
+>>>>>>> main
 
 const AddBook = () => {
+
+
+  const params = useParams()
+  const id = params.id
+
+  const initialFormData = {
+    title: '',
+    author: '',
+    genre: '',
+    publishing_details: '',
+    edition: '',
+    isbn: '',
+    summary: '',
+    condition: '',
+    image: '',
+    user_id: id,
+    status: 'active',
+    rating: '',
+  
+  }
+
+ 
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -41,6 +76,12 @@ const AddBook = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
+<<<<<<< HEAD
+=======
+    
+    dispatch(addBook(form))
+    navigate('/')
+>>>>>>> main
     
     const formData = new FormData()
     if (isURL === 'yes') {
@@ -210,16 +251,6 @@ const AddBook = () => {
             onChange={handleChange}
             value={form.rating}
             name="rating"
-          />
-        </label>
-        <label htmlFor="user_id">
-          User Id:
-          <input
-            id="user_id"
-            type="text"
-            onChange={handleChange}
-            value={form.user_id}
-            name="user_id"
           />
         </label>
         <button className={styles.editbutton}>Add Book</button>

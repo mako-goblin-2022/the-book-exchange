@@ -71,7 +71,13 @@ function handleSubmit(e){
         <br></br>
         <label htmlFor='image'>Image URL</label>
           <input id='image' name='image' type='text' defaultValue={book.image} onChange={handleChange}></input>
-        
+         Or Upload Image: <input
+            id='imageupload'
+              className="primary-button"
+              type="file"
+              name="image"
+              onChange={handleiChange}
+            />
         <br></br>
         <label htmlFor='rating'>Rating</label>
           <input id='rating' name='rating' type='text' defaultValue={book.rating} onChange={handleChange}></input>

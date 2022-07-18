@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams, useNavigate} from 'react-router-dom'
 import { fetchBooks, fetchProfile } from '../actions/profile'
 import styles from '../styles/Profile.module.scss'
 
 function Profile() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  let { id } = useParams()
+  const params = useParams()
 
   const FullState = useSelector((state) => {
-    return state.profileReducer
-  })
+    return state.profileReducer})
+
+    console.log(FullState)
+
+    const id = params.id
+   
+ 
   useEffect(() => {
     dispatch(fetchProfile(id))
   }, [])
@@ -19,6 +24,7 @@ function Profile() {
   useEffect(() => {
     dispatch(fetchBooks(id))
   }, [])
+
   const profile = FullState.profile
 
   const chosenBooks = FullState.books
@@ -42,6 +48,8 @@ function Profile() {
             </p>
           </div>
         </div>
+        <button onClick={() => navigate(`/${id}/add`)} className='primary-button'>Add New Book</button>
+        <br></br>
         <div className={styles.row}>
           {chosenBooks.map((book) => (
             <div
@@ -64,17 +72,10 @@ function Profile() {
             </div>
           ))}
         </div>
-        <button onClick={() => navigate('/add')} className='primary-button'>Add New Book</button>
+        
       </div>
     </>
   )
 }
-// id: 1,
-// name: 'Anette',
-// location: 'Mars',
-// favourite_genre: 'Animation|Drama',
-// trading_tokens: 1,
-// email: 'aswancott0@blogtalkradio.com',
-// image:
 
 export default Profile

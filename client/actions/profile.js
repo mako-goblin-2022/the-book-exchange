@@ -27,7 +27,6 @@ export function fetchProfile(id) {
 export function fetchBooks(id) {
   return (dispatch) => {
     return getBooksbyID(id).then((bob) => {
-      // console.log('action', bob)
       dispatch(setprofilebooks(bob))
     })
   }
