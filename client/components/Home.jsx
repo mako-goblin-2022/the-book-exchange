@@ -23,6 +23,7 @@ export default function Home() {
         {books.content &&
           books.content.map((book) => (
             <div key={book.id} onMouseDown={() => navigate(/books/ + book.id)} role="button" tabIndex={0}> 
+            {/* Attaching interaction and roles to divs is usually a hint that you're doing something inaccessible. Could these just be buttons or links? */}
             <img className={styles.bookCover} src={book.image} key={book.id} alt="Book" />
             </div>
           ))}

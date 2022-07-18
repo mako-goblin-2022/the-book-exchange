@@ -1,12 +1,12 @@
-header{
-  display: inline-flex; 
-  background-color:#f5f3f4 ;
+header {
+  display: inline-flex;
+  background-color: #f5f3f4;
   border-bottom: 2px solid #5b27d8;
   padding: 20px;
   width: 100%;
   justify-content: center;
- 
-  h1{
+
+  h1 {
     text-align: center;
     font-size: 3.5em;
     color: #5b27d8;
@@ -14,12 +14,13 @@ header{
     align-self: center;
     padding: 20px;
   }
-  img{
+
+  img {
     padding: 20px;
     padding-right: 5px;
     width: 8%;
     height: fit-content;
-    object-fit:contain;
+    object-fit: contain;
     float: left;
     align-self: center;
 
