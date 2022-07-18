@@ -7,6 +7,9 @@
   import '@testing-library/jest-dom'
   
   import Header from '../Header'
+  // Jest isn't liking the sass modules pulled into the components. Maybe try something like?
+  // - https://www.npmjs.com/package/jest-css-modules-transform
+  // - https://jestjs.io/docs/webpack
   
   describe('<Header/>', () => {
     it('renders a <h1> tag that includes "The Book Exchange"', () => {
