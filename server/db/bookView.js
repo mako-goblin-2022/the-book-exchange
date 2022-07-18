@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-module.exports = { getBookDetails, transaction }
+module.exports = { getBookDetails, transaction, updateBook }
 
 function getBookDetails(id, db = connection) {
   return db('books')
@@ -41,4 +41,23 @@ function transaction(id, newOwnerId, currentOwnerId, db = connection) {
         .where('users.id', newOwnerId)
         .decrement('trading_tokens', 1)
     })
+}
+function updateBook(book, id, db = connection) {
+  return db('books')
+    .update({
+      id: id,
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      publishing_details: book.publishingDetails,
+      edition: book.edition,
+      isbn: book.isbn,
+      summary: book.summary,
+      condition: book.condition,
+      image: book.image,
+      user_id: book.userId,
+      status: book.status,
+      rating: book.rating,
+    })
+    .where({ id })
 }

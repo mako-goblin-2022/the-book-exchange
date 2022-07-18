@@ -24,3 +24,15 @@ export function changeBookStatus(id, newOwnerId, currentOwnerId) {
       console.log(e)
     })
 }
+//api/v1/books/edit/:id
+export function editBookListing(book, id) {
+  return request
+    .patch(`${serverUrl}/books/edit/${id}`)
+    .send(book)
+    .then((res) => {
+      return res.body
+    })
+    .catch((res) => {
+      res.status(500)
+    })
+}
