@@ -3,6 +3,7 @@ const testConfig = require('../knexfile').test
 const testDb = knex(testConfig)
 
 const { getBookDetails, updateBook, transaction } = require('../bookView')
+const { getProfile } = require('../profile')
 
 beforeAll(() => {
   return testDb.migrate.latest()
@@ -45,19 +46,19 @@ describe('updateBook', () => {
 describe('transaction', () => {
   const id = 1
 
-  const newOwner = {
-    id: 2,
-    trading_tokens: 2,
-  }
+  // const newOwner = {
+  //   id: 2,
+  //   trading_tokens: 2,
+  // }
 
-  const currentOwner = {
-    id: 1,
-    trading_tokens: 4,
-  }
+  // const currentOwner = {
+  //   id: 1,
+  //   trading_tokens: 4,
+  // }
 
-  const newOwnerId = newOwner.id
+  const newOwnerId = 2
 
-  const currentOwnerId = currentOwner.id
+  const currentOwnerId = 1
 
   it('updates the book status', () => {
     expect.assertions(1)
@@ -71,11 +72,34 @@ describe('transaction', () => {
   })
   it('updates the book user_id', () => {
     expect.assertions(1)
-    return transaction(id, newOwnerId, currentOwnerId, testDb).then(() => {
-      expect(newOwnerId).toBe(2)
-    })
+    return transaction(id, newOwnerId, currentOwnerId, testDb)
+      .then(() => {
+        return getBookDetails(id, testDb)
+      })
+      .then((book) => {
+        expect(book.userId).toBe(newOwnerId)
+      })
   })
 
-  it.todo('decrements the trading_tokens of the newOwner user')
-  it.todo('increments the trading_tokens of the currentOwner (old) user')
+  it('decrements the trading_tokens of the newOwner user', () => {
+    expect.assertions(1)
+    return transaction(id, newOwnerId, currentOwnerId, testDb)
+      .then(() => {
+        return getProfile(newOwnerId, testDb)
+      })
+      .then((user) => {
+        expect(user.trading_tokens).toBe(1) //how do you test that a value decrements without hardcoding
+      })
+  })
+
+  it('increments the trading_tokens of the currentOwner (old) user', () => {
+    expect.assertions(1)
+    return transaction(id, newOwnerId, currentOwnerId, testDb)
+      .then(() => {
+        return getProfile(currentOwnerId, testDb)
+      })
+      .then((user) => {
+        expect(user.trading_tokens).toBe(2)
+      })
+  })
 })
