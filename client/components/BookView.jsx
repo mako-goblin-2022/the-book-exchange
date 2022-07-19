@@ -47,7 +47,7 @@ export default function BookView() {
             <p>ISBN: {book.isbn}</p>
             <p>Summary: {book.summary}</p>
             <p>Condition: {book.condition}</p>
-            <p>Trader: {book.usersName} ||  Location: {book.usersLocation}</p>
+            <p>Trader: <Link to={`/userslistings/${book.traderId}`}>{book.usersName}</Link><span> ||  Location: {book.usersLocation}</span></p>
           </div>
          
           <IfAuthenticated>
