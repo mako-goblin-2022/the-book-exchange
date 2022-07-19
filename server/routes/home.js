@@ -34,7 +34,7 @@ router.post('/add-upload', multerUpload.single('image'), (req, res) => {
   const thisBook = { ...book, image: req.file.path.substring(13) }
   //GET the image file from multer
   //then readd to the book before the database gets it
-
+  console.log(thisBook, req.file)
   db.addBook(thisBook)
     .then((newBook) => {
       res.json(newBook)

@@ -53,7 +53,7 @@ describe("<EditBook />", () => {
     </Provider>
     )
     const heading = screen.getAllByRole('heading')
-    console.log(heading)
+    //console.log(heading)
     expect(heading[0]).toContainHTML('h2')
     expect(heading[0]).toHaveTextContent(/Edit the book below/)
   })

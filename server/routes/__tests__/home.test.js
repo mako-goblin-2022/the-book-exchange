@@ -124,6 +124,34 @@ describe('POST /api/v1/home/add', () => {
       })
   })
 })
+const fileimage = {
+  id: 100,
+  title: 'The Best Book',
+  image: {
+    fieldname: 'image',
+    originalname: 'discord_me.jpg',
+    encoding: '7bit',
+    mimetype: 'image/jpeg',
+    destination: 'server/public/images/uploads',
+    filename: '1658202819551-847690973-discord_me.jpg',
+    path: 'server/public/images/uploads/1658202819551-847690973-discord_me.jpg',
+    size: 55111,
+  },
+  // 'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
+  user_id: '2',
+}
+
+describe('POST /api/v1/home/add-upload', () => {
+  it('can post book with a image upload', () => {
+    addBook.mockImplementation(Promise.resolve(fileimage))
+    return request(server)
+      .get('/api/v1/home/add-upload')
+      .then((res) => {
+        expect.assertions(1)
+        expect(res.status).toBe(200)
+      })
+  })
+})
 
 describe('GET /api/v1/home/search', () => {
   it('searches the books database based on a search term', () => {
