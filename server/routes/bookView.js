@@ -23,7 +23,6 @@ router.get('/:id', (req, res) => {
       res.status(500).send(err.message)
     })
 })
-
 router.patch('/status/:id', (req, res) => {
   const id = req.params.id
   const newOwnerId = req.body.newOwnerId

@@ -13,7 +13,7 @@ describe('<Footer/>', () => {
     render(<Footer />)
     expect.assertions(2)
     const p = screen.getAllByText(/The Book Exchange/)
-    console.log(p[0])
+   // console.log(p[0])
     expect(p[0]).not.toBeNull()
     expect(p[0]).toHaveTextContent('The Book Exchange')
   })

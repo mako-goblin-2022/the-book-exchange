@@ -20,7 +20,7 @@ describe('db.getProfile', () => {
     return getProfile('2', testDb).then((user) => {
       expect.assertions(2)
       expect(user).not.toBeNull()
-      expect(user.id).toBe(2)
+      expect(user.id).toBe('2')
     })
   })
 })

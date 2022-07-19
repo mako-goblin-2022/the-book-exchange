@@ -20,7 +20,7 @@ const home = (state = initialState, action) => {
       }
     case POST_BOOK:
       return {
-        content: [...state, payload],
+        content: [...(state.content || []), payload],
         error: null,
       }
 

@@ -1,4 +1,4 @@
-import { getBooksData, saveBook, searchBooksData } from '../home'
+import { getBooksData, saveBook, saveimageBook, searchBooksData } from '../home'
 import nock from 'nock'
 
 const getBooksMockData = {
@@ -85,6 +85,37 @@ describe('POST/api/v1/home/add', () => {
   })
 })
 
+// ****** IMAGE UPLOAD SECTION ****** //
+const fileimage = {
+  id: 420,
+  title: 'Bobs',
+  image: {
+    fieldname: 'image',
+    originalname: 'discord_me.jpg',
+    encoding: '7bit',
+    mimetype: 'image/jpeg',
+    destination: 'server/public/images/uploads',
+    filename: '1658202819551-847690973-discord_me.jpg',
+    path: 'server/public/images/uploads/1658202819551-847690973-discord_me.jpg',
+    size: 55111,
+  },
+  user_id: '2',
+}
+describe('POST /api/v1/home/add-upload', () => {
+  it('sends book correctly', () => {
+    expect.assertions(2)
+    const scope = nock('http://localhost')
+      .post('/api/v1/home/add-upload')
+      .reply(200, fileimage)
+
+    return saveimageBook(fileimage).then((book) => {
+      expect(book.title).toBe('Bobs')
+
+      expect(scope.isDone()).toBeTruthy()
+    })
+  })
+})
+// ************************************* //
 describe('/api/v1/home/search', () => {
   it('returns a book or books based on a search', () => {
     const searchTerm = 'kate'

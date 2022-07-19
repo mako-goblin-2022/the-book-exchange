@@ -15,7 +15,14 @@ export function saveBook(bookBody) {
       return res.body
     })
 }
-
+export function saveimageBook(bookBody) {
+  return request
+    .post(`${homeApi}add-upload`)
+    .send(bookBody)
+    .then((res) => {
+      return res.body
+    })
+}
 export function searchBooksData(search) {
   return request.get(`${homeApi}search?search=${search}`).then((res) => {
     return res.body.books

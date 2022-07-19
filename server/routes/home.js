@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../db/home')
+const { multerUpload } = require('../middleware/multer')
 
 router.get('/', (req, res) => {
   db.getBooks()
@@ -16,6 +17,18 @@ router.get('/', (req, res) => {
 router.post('/add', (req, res) => {
   const book = req.body
   db.addBook(book)
+    .then((newBook) => {
+      res.json(newBook)
+      return null
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+router.post('/add-upload', multerUpload.single('image'), (req, res) => {
+  const book = req.body
+  const thisBook = { ...book, image: req.file.path.substring(13) }
+  db.addBook(thisBook)
     .then((newBook) => {
       res.json(newBook)
       return null
