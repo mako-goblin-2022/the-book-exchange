@@ -12,7 +12,6 @@ function Profile() {
   const FullState = useSelector((state) => {
     return state.profileReducer})
 
-    console.log(FullState)
 
     const id = params.id
    
@@ -30,8 +29,6 @@ function Profile() {
   const chosenBooks = FullState.books
 
   const isNotDbUser = profile === null
-
-  console.log(profile)
 
   return (
     <>
