@@ -1,8 +1,9 @@
-<<<<<<< HEAD
-import { getBooksData, saveBook, saveimageBook } from '../apis/home'
-=======
-import { getBooksData, saveBook, searchBooksData } from '../apis/home'
->>>>>>> main
+import {
+  getBooksData,
+  saveBook,
+  saveimageBook,
+  searchBooksData,
+} from '../apis/home'
 
 export const SET_BOOKS = 'SET_BOOKS'
 export const SET_BOOKS_ERROR = 'SET_BOOKS_ERROR'
