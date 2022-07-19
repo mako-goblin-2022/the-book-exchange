@@ -22,7 +22,7 @@ function getBooks(db = connection) {
 
 function addBook(book, db = connection) {
   return db('books')
-    .insert(book)
+    .insert(book, ['id'])
     .then(([id]) => {
       return { ...book, id }
     })
