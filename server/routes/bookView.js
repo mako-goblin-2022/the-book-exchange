@@ -1,9 +1,6 @@
 const express = require('express')
 const router = express.Router()
-<<<<<<< HEAD
-=======
 // const checkJwt = require('../auth0.js')
->>>>>>> main
 
 const db = require('../db/bookView')
 //PATCH api/v1/books/edit/:id
