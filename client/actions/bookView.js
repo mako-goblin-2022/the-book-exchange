@@ -2,7 +2,11 @@ export const SET_BOOK = 'SET_BOOK'
 export const SET_STATUS = 'SET_STATUS'
 export const UPDATE_BOOK = 'UPDATE_BOOK'
 
-import { getBook, changeBookStatus, editBookListing } from '../apis/bookView'
+import {
+  getBook,
+  processBookTransaction,
+  editBookListing,
+} from '../apis/bookView'
 
 export function setBook(book) {
   return {
@@ -13,7 +17,7 @@ export function setBook(book) {
 
 export function setStatus() {
   return {
-    type: SET_STATUS, //SET_STATUS_INACTIVE
+    type: SET_STATUS,
   }
 }
 
@@ -25,17 +29,16 @@ export function fetchBook(id) {
     })
   }
 }
-// UPDATE STATUS OF BOOK
-export function updateBookStatus(id) {
+
+export function sendTransactionData(id, newOwnerId, currentOwnerId) {
   return (dispatch) => {
-    return changeBookStatus(id).then((book) => {
+    return processBookTransaction(id, newOwnerId, currentOwnerId).then(() => {
       dispatch(setStatus())
       return null
     })
   }
 }
 
-// UPDATE BOOK
 export function updatebook(book) {
   return {
     type: UPDATE_BOOK,

@@ -13,7 +13,7 @@
       render(<Header />)
       // expect.assertions(2)
       const heading = screen.getAllByRole('heading')
-      console.log(heading)
+    //  console.log(heading)
       expect(heading[0]).toContainHTML('h1')
       expect(heading[0]).toHaveTextContent(/The Book Exchange/)
     })

@@ -14,8 +14,13 @@ export function getBook(id) {
     })
 }
 
-export function changeBookStatus(id) {
-  return request.patch(`${serverUrl}/books/status/${id}`)
+export function processBookTransaction(id, newOwnerId, currentOwnerId) {
+  return request
+    .patch(`${serverUrl}/books/status/${id}`)
+    .send({ newOwnerId: newOwnerId, currentOwnerId: currentOwnerId })
+    .catch((res) => {
+      res.status(500)
+    })
 }
 //api/v1/books/edit/:id
 export function editBookListing(book, id) {

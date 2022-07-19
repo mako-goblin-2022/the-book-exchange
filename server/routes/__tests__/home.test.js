@@ -124,7 +124,27 @@ describe('POST /api/v1/home/add', () => {
       })
   })
 })
-
+// ****** IMAGE UPLOAD SECTION ****** //
+jest.mock('../../middleware/multer', () => ({
+  multerUpload: {
+    single: jest.fn().mockReturnValue(fileimage),
+  },
+}))
+const fileimage = (req, res, next) => {
+  next()
+}
+describe('POST /api/v1/home/add-upload', () => {
+  it('can post book with a image upload', () => {
+    expect.assertions(1)
+    addBook.mockReturnValue(Promise.resolve(fileimage))
+    return request(server)
+      .get('/api/v1/home/add-upload')
+      .then((res) => {
+        expect(res.status).toBe(200)
+      })
+  })
+})
+//*************************************** *//
 describe('GET /api/v1/home/search', () => {
   it('searches the books database based on a search term', () => {
     const search = 'kate'
