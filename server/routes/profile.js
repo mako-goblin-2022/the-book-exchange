@@ -6,7 +6,7 @@ const db = require('../db/profile')
 
 // GET /api/v1/profile/:id
 router.get('/:id', (req, res) => {
-  const { id } = req.params
+  const id = req.params.id
   db.getProfile(id)
     .then((data) => res.json(data))
     .catch(() => {

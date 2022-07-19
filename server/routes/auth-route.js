@@ -29,16 +29,16 @@ router.put('/', checkJwt, async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-  const { auth0Id, name, location, favouriteGenre, image } = req.body
+  const { auth0Id, email, name, location, favouriteGenre, image } = req.body
   const user = {
     auth0Id,
     name,
     location,
     favouriteGenre,
-    trading_tokens: 1,
+    tradingTokens: 1,
+    email,
     image,
   }
-  console.log
   try {
     const existingUser = await db.userExists(auth0Id)
     if (existingUser) return res.sendStatus(200)

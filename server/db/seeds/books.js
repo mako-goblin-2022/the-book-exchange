@@ -19,7 +19,7 @@ exports.seed = function (knex) {
             'https://upload.wikimedia.org/wikipedia/en/c/c5/Winnie-the-Pooh_%28book%29.png',
           user_id: 2,
           status: 'active',
-          rating: '',
+          rating: '4.34/5 (Goodreads)',
         },
 
         {
@@ -37,7 +37,7 @@ exports.seed = function (knex) {
             'https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg',
           user_id: 2,
           status: 'active',
-          rating: '',
+          rating: '4.5/5 (Goodreads)',
         },
 
         {
@@ -55,7 +55,7 @@ exports.seed = function (knex) {
             'https://upload.wikimedia.org/wikipedia/en/9/9b/LordOfTheFliesBookCover.jpg',
           user_id: 1,
           status: 'active',
-          rating: '',
+          rating: '3.7/5 (Goodreads)',
         },
 
         {
@@ -73,7 +73,7 @@ exports.seed = function (knex) {
             'https://www.whitcoulls.co.nz/content/products/27/48/6314827_MAIN.jpg?width=416&height=620&fit=bounds&enable=upscale&bg-color=ffffff&canvas=416%2C620',
           user_id: 6,
           status: 'active',
-          rating: '',
+          rating: '4.5/5 (Goodreads)',
         },
 
         {
@@ -91,7 +91,7 @@ exports.seed = function (knex) {
             'https://cdn.nzedge.com/wp-content/uploads/2021/09/hairy_maclary09sep21.jpg',
           user_id: 3,
           status: 'active',
-          rating: '',
+          rating: '4.3/5 (Goodreads)',
         },
 
         {
@@ -110,7 +110,7 @@ exports.seed = function (knex) {
           image: 'https://d3fa68hw0m2vcc.cloudfront.net/54e/120383546.jpeg',
           user_id: 4,
           status: 'active',
-          rating: '',
+          rating: '3.8/5 (Goodreads)',
         },
       ])
     })

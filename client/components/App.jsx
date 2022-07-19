@@ -9,6 +9,7 @@ import BookView from './BookView'
 import Nav from './Nav'
 import Registration from './Registration'
 import About from './About'
+import EditBook from './EditBook'
 import AddBook from './AddBook'
 
 import { cacheUser } from '../auth0-utils'
@@ -18,7 +19,7 @@ function App() {
   cacheUser(useAuth0)
   return (
     <>
-      <Header />
+      
       <section className="main">
         <Header />
         <Nav />
@@ -29,7 +30,8 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path={'/profile/:id'} element={<Profile />} />
           <Route path={'/books/:id'} element={<BookView />} />
-          <Route path={'/add'} element={<AddBook />} />
+          <Route path={'/edit/:id'} element={<EditBook />}/>
+          <Route path={'/:id/add'} element={<AddBook />} />
         </Routes>
       </section>
       <Footer />

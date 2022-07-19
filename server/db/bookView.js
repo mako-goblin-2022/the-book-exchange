@@ -1,6 +1,6 @@
 const connection = require('./connection')
 
-module.exports = { getBookDetails, updateStatus }
+module.exports = { getBookDetails, updateStatus, updateBook }
 
 function getBookDetails(id, db = connection) {
   return db('books')
@@ -20,7 +20,9 @@ function getBookDetails(id, db = connection) {
       'books.status',
       'books.rating',
       'users.name as usersName',
-      'users.email as usersEmail'
+      'users.email as usersEmail',
+      'users.location as usersLocation',
+      'users.id as traderId'
     )
     .where('books.id', id)
     .first()
@@ -28,4 +30,23 @@ function getBookDetails(id, db = connection) {
 
 function updateStatus(id, db = connection) {
   return db('books').where({ id }).update({ status: 'inactive' })
+}
+function updateBook(book, id, db = connection) {
+  return db('books')
+    .update({
+      id: id,
+      title: book.title,
+      author: book.author,
+      genre: book.genre,
+      publishing_details: book.publishingDetails,
+      edition: book.edition,
+      isbn: book.isbn,
+      summary: book.summary,
+      condition: book.condition,
+      image: book.image,
+      user_id: book.userId,
+      status: book.status,
+      rating: book.rating,
+    })
+    .where({ id })
 }

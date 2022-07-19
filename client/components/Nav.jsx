@@ -9,7 +9,8 @@ import { searchBooks } from '../actions/home'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Nav() {
-  // TODO: call the useAuth0 hook and destructure logout and loginWithRedirect
+
+  const id = useAuth0().user?.sub
   const { logout, loginWithRedirect } = useAuth0()
   function handleLogoff(e) {
     e.preventDefault()
@@ -54,7 +55,7 @@ function Nav() {
           </form>
         </div>
         <IfAuthenticated>
-          <NavLink to="/profile/:id">My Profile</NavLink>
+          <NavLink to={`/profile/${id}`}>My Profile</NavLink>
           <NavLink to="/" onClick={handleLogoff}>
             Log off
           </NavLink>

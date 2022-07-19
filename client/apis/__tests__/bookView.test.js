@@ -1,5 +1,5 @@
 import nock from 'nock'
-import { getBook } from '../bookView'
+import { getBook, editBookListing } from '../bookView'
 
 const fakeBook = {
   id: 1,
@@ -18,6 +18,13 @@ const fakeBook = {
   rating: '10',
 }
 
+const editBookMockData = {
+  id: 1,
+  title: 'Winnie-the-Pooh',
+  author: 'A. A. Milne',
+  genre: 'Horror',
+}
+
 describe('GET/api/v1/books', () => {
   it('gets one book', async () => {
     const scope = nock('http://localhost')
@@ -29,5 +36,35 @@ describe('GET/api/v1/books', () => {
     expect(book.title).toBe('The Best Book')
     expect(book).toEqual(fakeBook)
     scope.done()
+  })
+})
+
+describe('editBookListing', () => {
+  test('returns updated Book object', () => {
+    const id = editBookMockData.id
+    const scope = nock('http://localhost')
+      .patch('/api/v1/books/edit/1')
+      .reply(200, editBookMockData)
+
+    return editBookListing(editBookMockData, id).then((res) => {
+      expect(res).toEqual(editBookMockData)
+      expect(scope.isDone()).toBe(true)
+    })
+  })
+
+  test('fails to update book object', () => {
+    expect.assertions(2)
+    const scope = nock('http://localhost')
+      .patch('/api/v1/books/edit/1')
+      .reply(500)
+    let error = null
+    return editBookListing(editBookMockData, editBookMockData.id)
+      .catch((err) => {
+        error = err
+      })
+      .finally(() => {
+        expect(error).not.toBeNull()
+        expect(scope.isDone()).toBeTruthy()
+      })
   })
 })

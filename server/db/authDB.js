@@ -14,7 +14,8 @@ function createUser(user, db = connection) {
     name: user.name,
     location: user.location,
     favourite_genre: user.favouriteGenre,
-    trading_tokens: 1,
+    trading_tokens: user.tradingTokens,
+    email: user.email,
     image: user.image,
   })
 }
