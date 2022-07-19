@@ -16,10 +16,6 @@ router.get('/', (req, res) => {
 
 router.post('/add', (req, res) => {
   const book = req.body
-  //const thisBook = { ...book, image: req.file.path.substring(13) }
-  //GET the image file from multer
-  //then readd to the book before the database gets it
-
   db.addBook(book)
     .then((newBook) => {
       res.json(newBook)
@@ -32,9 +28,6 @@ router.post('/add', (req, res) => {
 router.post('/add-upload', multerUpload.single('image'), (req, res) => {
   const book = req.body
   const thisBook = { ...book, image: req.file.path.substring(13) }
-  //GET the image file from multer
-  //then readd to the book before the database gets it
-
   db.addBook(thisBook)
     .then((newBook) => {
       res.json(newBook)
