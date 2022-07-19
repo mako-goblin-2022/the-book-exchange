@@ -29,8 +29,15 @@ function Profile() {
 
   const chosenBooks = FullState.books
 
+  const isNotDbUser = profile === null
+
+  console.log(profile)
+
   return (
     <>
+    {isNotDbUser ?
+    (navigate("/register/"))
+    :(
       <div className={styles.container}>
         <img src={profile.image} alt={profile.name} />
         <h2>{profile.name}</h2>
@@ -74,6 +81,7 @@ function Profile() {
         </div>
         
       </div>
+    )}
     </>
   )
 }

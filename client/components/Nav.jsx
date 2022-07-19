@@ -9,6 +9,7 @@ function Nav() {
 
   const id = useAuth0().user?.sub
   const { logout, loginWithRedirect } = useAuth0()
+  
   function handleLogoff(e) {
     e.preventDefault()
     logout()
