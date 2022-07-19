@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux'
 import { addUser } from '../apis/api'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/forms.module.scss'
-
 function Registration() {
 
   const navigate = useNavigate()
