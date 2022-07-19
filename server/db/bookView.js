@@ -20,7 +20,9 @@ function getBookDetails(id, db = connection) {
       'books.status',
       'books.rating',
       'users.name as usersName',
-      'users.email as usersEmail'
+      'users.email as usersEmail',
+      'users.location as usersLocation',
+      'users.id as traderId'
     )
     .where('books.id', id)
     .first()

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom'
-
+import { Auth0Provider } from '@auth0/auth0-react'
 import reducers from './reducers'
 import App from './components/App'
 
@@ -13,11 +13,18 @@ const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)))
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>,
+    <Auth0Provider
+      domain={'mako-thebookexchange.au.auth0.com'}
+      clientId={'pRusjdfuncAWWc3IHHFrC3seN4dAhul5'}
+      redirectUri={window.location.origin}
+      audience="https://thebookexchange/api"
+    >
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </Auth0Provider>,
     document.getElementById('app')
   )
 })
