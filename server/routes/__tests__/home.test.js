@@ -124,7 +124,7 @@ describe('POST /api/v1/home/add', () => {
       })
   })
 })
-
+// ****** IMAGE UPLOAD SECTION ****** //
 jest.mock('../../middleware/multer', () => ({
   multerUpload: {
     single: jest.fn().mockReturnValue(fileimage),
@@ -133,21 +133,6 @@ jest.mock('../../middleware/multer', () => ({
 const fileimage = (req, res, next) => {
   next()
 }
-//   id: 100,
-//   title: 'The Best Book',
-//   image: {
-//     fieldname: 'image',
-//     originalname: 'discord_me.jpg',
-//     encoding: '7bit',
-//     mimetype: 'image/jpeg',
-//     destination: 'server/public/images/uploads',
-//     filename: '1658202819551-847690973-discord_me.jpg',
-//     path: 'server/public/images/uploads/1658202819551-847690973-discord_me.jpg',
-//     size: 55111,
-//   },
-//   user_id: '2',
-// }
-
 describe('POST /api/v1/home/add-upload', () => {
   it('can post book with a image upload', () => {
     expect.assertions(1)
@@ -159,7 +144,7 @@ describe('POST /api/v1/home/add-upload', () => {
       })
   })
 })
-
+//*************************************** *//
 describe('GET /api/v1/home/search', () => {
   it('searches the books database based on a search term', () => {
     const search = 'kate'

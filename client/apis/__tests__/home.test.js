@@ -103,11 +103,13 @@ const fileimage = {
 }
 describe('POST /api/v1/home/add-upload', () => {
   it('sends book correctly', () => {
+    expect.assertions(2)
     const scope = nock('http://localhost')
       .post('/api/v1/home/add-upload')
       .reply(200, fileimage)
 
     return saveimageBook(fileimage).then((book) => {
+      expect(book.title).toBe('Bobs')
       //   console.log(book)
       expect(scope.isDone()).toBeTruthy()
     })
