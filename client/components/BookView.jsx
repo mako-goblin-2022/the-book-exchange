@@ -10,7 +10,6 @@ export default function BookView() {
   const book = useSelector(state => state.book)
   const user = useSelector((state) => state.loggedInUser)
   const tokens = useSelector(state => state.profileReducer.profile.trading_tokens)
-  console.log(tokens)
 
   const navigate = useNavigate()
   const {id} = useParams()
@@ -21,10 +20,7 @@ export default function BookView() {
   }, [])
 
   function handleClick(){
-  
-    
     const newOwnerId = user.auth0Id
-    console.log(newOwnerId)
     const currentOwnerId = book.userId
     if (tokens <= 0) {
       alert("It looks like you have run out of tokens. Head over to our about page to learn about tokens so you can get your swap on!")
