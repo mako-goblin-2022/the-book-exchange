@@ -99,7 +99,7 @@ describe('transaction', () => {
         return getProfile(currentOwnerId, testDb)
       })
       .then((user) => {
-        expect(user.trading_tokens).toBe(2)
+        expect(user.trading_tokens).toBe(2) //how do you test that a value decrements without hardcoding
       })
   })
 })

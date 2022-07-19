@@ -2,7 +2,7 @@ const request = require('supertest')
 const server = require('../../server')
 jest.mock('../../db/bookView')
 
-const { getBookDetails, updateBook } = require('../../db/bookView')
+const { getBookDetails, updateBook, transaction } = require('../../db/bookView')
 
 const fakeBook = {
   id: 1,
@@ -63,5 +63,19 @@ describe('PATCH /api/v1/books/edit/:id', () => {
         expect(res.status).toBe(500)
         expect(res.text).toContain('Error')
       })
+  })
+})
+
+const fakeId = 1
+// const fakeNewOwnerId = 2
+// const fakeCurrentOwnerId = 1
+
+describe('PATCH /api/v1/books/status/:id', () => {
+  it('sends a status 200', () => {
+    transaction.mockReturnValue(Promise.resolve(fakeId))
+    expect.assertions(1)
+    return request(server)
+      .patch('/api/v1/books/status/' + fakeId)
+      .then((res) => expect(res.status).toBe(200))
   })
 })
