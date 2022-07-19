@@ -4,9 +4,10 @@ import {
   POST_BOOK,
   fetchBooks,
   addBook,
+  searchBooks,
 } from '../home'
 
-import { getBooksData, saveBook } from '../../apis/home'
+import { getBooksData, saveBook, searchBooksData } from '../../apis/home'
 
 jest.mock('../../apis/home')
 
@@ -115,6 +116,53 @@ describe('addBook', () => {
     expect.assertions(1)
     saveBook.mockImplementation(() => Promise.reject(new Error('errorMessage')))
     return addBook()(fakeDispatch).then(() => {
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: SET_BOOKS_ERROR,
+        payload: 'errorMessage',
+      })
+    })
+  })
+})
+
+describe('searchBooks', () => {
+  it('returns a book or books based on a search', () => {
+    const search = 'harry'
+    const fakeBook = {
+      id: 2,
+      title: "Harry Potter and the Philosopher's Stone",
+      author: 'J.K. Rowling',
+      genre: 'Fantasy',
+      publishing_details: 'Bloomsbury (UK) 1997',
+      edition: 'First',
+      isbn: '0-7475-3269-9',
+      summary:
+        "It is a story about Harry Potter, an orphan brought up by his aunt and uncle because his parents were killed when he was a baby. Harry is unloved by his uncle and aunt but everything changes when he is invited to join Hogwarts School of Witchcraft and Wizardry and he finds out he's a wizard.",
+      condition: 'Pristine',
+      image:
+        'https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg',
+      user_id: 2,
+      status: 'active',
+      rating: '',
+    }
+    searchBooksData.mockReturnValue(Promise.resolve(fakeBook))
+
+    return searchBooks(search)(fakeDispatch).then(() => {
+      expect.assertions(1)
+      expect(fakeDispatch).toHaveBeenCalledWith({
+        type: SET_BOOKS,
+        payload: fakeBook,
+      })
+    })
+  })
+
+  it('dispatches SET_BOOKS_ERROR on failure', () => {
+    const search = 'harry'
+    expect.assertions(1)
+    searchBooksData.mockImplementation(() =>
+      Promise.reject(new Error('errorMessage'))
+    )
+    return searchBooks(search)(fakeDispatch).then(() => {
+      expect.assertions(1)
       expect(fakeDispatch).toHaveBeenCalledWith({
         type: SET_BOOKS_ERROR,
         payload: 'errorMessage',

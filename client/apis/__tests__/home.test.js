@@ -1,4 +1,4 @@
-import { getBooksData, saveBook } from '../home'
+import { getBooksData, saveBook, searchBooksData } from '../home'
 import nock from 'nock'
 
 const getBooksMockData = {
@@ -82,5 +82,58 @@ describe('POST/api/v1/home/add', () => {
     expect(book.title).toBe('The Best Book')
     expect(book).toEqual(fakeBook)
     scope.done()
+  })
+})
+
+describe('/api/v1/home/search', () => {
+  it('returns a book or books based on a search', () => {
+    const searchTerm = 'kate'
+    const fakeBooks = {
+      books: [
+        {
+          id: 1,
+          title: 'The Best Book',
+          author: 'Kate',
+          genre: 'Classic',
+          publishing_details: '2022',
+          edition: 'First',
+          isbn: '4871873005',
+          summary: 'This is the best book in the world!',
+          condition: 'Well read',
+          image:
+            'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
+          user_id: 2,
+          status: 'active',
+          rating: '10',
+        },
+        {
+          id: 2,
+          title: 'The Best Book',
+          author: 'Kate',
+          genre: 'Classic',
+          publishing_details: '2022',
+          edition: 'First',
+          isbn: '4871873005',
+          summary: 'This is the best book in the world!',
+          condition: 'Well read',
+          image:
+            'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
+          user_id: 2,
+          status: 'active',
+          rating: '10',
+        },
+      ],
+    }
+    const scope = nock('http://localhost')
+      .persist()
+      .get(`/api/v1/home/search`)
+      .query({ search: searchTerm })
+      .reply(200, fakeBooks)
+
+    return searchBooksData(searchTerm).then((books) => {
+      expect.assertions(1)
+      expect(books[0].title).toBe(`The Best Book`)
+      scope.done()
+    })
   })
 })

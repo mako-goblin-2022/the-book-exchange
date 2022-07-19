@@ -25,3 +25,8 @@ export function saveimageBook(bookBody) {
       return res.body
     })
 }
+export function searchBooksData(search) {
+  return request.get(`${homeApi}search?search=${search}`).then((res) => {
+    return res.body.books
+  })
+}

@@ -2,7 +2,7 @@ const knex = require('knex')
 const testConfig = require('../knexfile').test
 const testDb = knex(testConfig)
 
-const { getBooks, addBook } = require('../home')
+const { getBooks, addBook, searchBooks } = require('../home')
 
 beforeAll(() => {
   return testDb.migrate.latest()
@@ -52,6 +52,17 @@ describe('addBook', () => {
       expect.assertions(2)
       expect(fakebook.title).toBe('The Best Book')
       expect(fakebook.rating).toBe('10')
+    })
+  })
+})
+
+describe('searchBooks', () => {
+  it('returns a books or books based on a search', () => {
+    const search = 'harry'
+    return searchBooks(search, testDb).then((books) => {
+      expect.assertions(2)
+      expect(books[0].author).toBe('J.K. Rowling')
+      expect(books).toHaveLength(1)
     })
   })
 })
