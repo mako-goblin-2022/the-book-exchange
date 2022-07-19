@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate, useParams} from 'react-router-dom'
 import { fetchBooks, fetchProfile } from '../actions/profile'
-import styles from '../styles/Profile.module.scss'
+import styles from '../styles/UserListings.module.scss'
 
 export default function UsersListings() {
 
@@ -34,14 +34,19 @@ export default function UsersListings() {
   return (
     <>
       <div className={styles.container}>
+       <div className={styles.profilecard}>
         <img src={profile.image} alt={profile.name} />
-        <h2>{profile.name}</h2>
-        <h3>
-          <strong>Location:</strong> {profile.location}
-        </h3>
-        <p>
-          <strong>Favourite genre:</strong> {profile.favourite_genre}
-        </p>
+        <h2><strong>{profile.name}</strong></h2>
+        <ul>
+          <li>
+            <strong>Location:</strong> {profile.location}
+          </li>
+          <li>
+            <strong>Favourite genre:</strong> {profile.favourite_genre}
+          </li>
+        </ul>
+      
+        </div>
         <div className={styles.row}>
           {chosenBooks.map((book) => (
             <div
