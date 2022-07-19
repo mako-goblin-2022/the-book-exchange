@@ -67,12 +67,10 @@ describe('PATCH /api/v1/books/edit/:id', () => {
 })
 
 const fakeId = 1
-// const fakeNewOwnerId = 2
-// const fakeCurrentOwnerId = 1
 
 describe('PATCH /api/v1/books/status/:id', () => {
   it('sends a status 200', () => {
-    transaction.mockReturnValue(Promise.resolve(fakeId))
+    transaction.mockReturnValue(Promise.resolve())
     expect.assertions(1)
     return request(server)
       .patch('/api/v1/books/status/' + fakeId)
