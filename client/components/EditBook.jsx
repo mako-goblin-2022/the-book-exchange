@@ -31,7 +31,9 @@ function handleSubmit(e){
   alert('Your update has been saved!')
   navigate('/books/'+id)
 }
-
+function handleiChange(){
+  //
+}
   return (
 
     <div>
@@ -71,7 +73,7 @@ function handleSubmit(e){
         <br></br>
         <label htmlFor='image'>Image URL</label>
           <input id='image' name='image' type='text' defaultValue={book.image} onChange={handleChange}></input>
-         Or Upload Image: <input
+         Or Replace Image Upload: <input
             id='imageupload'
               className="primary-button"
               type="file"

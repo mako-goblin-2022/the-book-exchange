@@ -1,35 +1,10 @@
-<<<<<<< HEAD
 import React, { useState , useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate ,useParams} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addBook,addimageBook } from '../actions/home'
 import styles from '../styles/forms.module.scss'
-const initialFormData = {
-  title: '',
-  author: '',
-  genre: '',
-  publishing_details: '',
-  edition: '',
-  isbn: '',
-  summary: '',
-  condition: '',
-  image: '',
-  user_id: '',
-  status: 'active',
-  rating: '',
-}
-=======
-import React, {useState} from 'react'
-import {  useNavigate, useParams } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import {addBook} from '../actions/home'
-import styles from '../styles/forms.module.scss'
 
 
-
-
-
->>>>>>> main
 
 const AddBook = () => {
 
@@ -76,12 +51,6 @@ const AddBook = () => {
 
   function handleSubmit(event) {
     event.preventDefault()
-<<<<<<< HEAD
-=======
-    
-    dispatch(addBook(form))
-    navigate('/')
->>>>>>> main
     
     const formData = new FormData()
     if (isURL === 'yes') {
