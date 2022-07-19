@@ -1,7 +1,7 @@
 const request = require('supertest')
 const server = require('../../server')
 
-const { getProfile } = require('../../db/profile')
+const { getProfile, getBooksByUserId } = require('../../db/profile')
 
 jest.mock('../../db/profile', () => ({
   getProfile: jest.fn(),
