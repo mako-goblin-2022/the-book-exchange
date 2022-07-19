@@ -9,7 +9,6 @@ function updateUser(auth0Id, formUserData, db = connection) {
 }
 
 function createUser(user, db = connection) {
-  console.log('db', user)
   return db('users').insert({
     id: user.auth0Id,
     name: user.name,

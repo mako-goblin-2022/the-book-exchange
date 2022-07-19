@@ -1,9 +1,10 @@
 const request = require('supertest')
 const server = require('../../server')
-const { getBooks, addBook } = require('../../db/home')
+const { getBooks, addBook, searchBooks } = require('../../db/home')
 jest.mock('../../db/home', () => ({
   getBooks: jest.fn(),
   addBook: jest.fn(),
+  searchBooks: jest.fn(),
 }))
 
 beforeEach(() => {
@@ -117,6 +118,29 @@ describe('POST /api/v1/home/add', () => {
     return request(server)
       .post('/api/v1/home/add')
       .send(fakeBook)
+      .then((res) => {
+        expect.assertions(1)
+        expect(res.status).toBe(500)
+      })
+  })
+})
+
+describe('GET /api/v1/home/search', () => {
+  it('searches the books database based on a search term', () => {
+    const search = 'kate'
+    searchBooks.mockReturnValue(Promise.resolve(fakeBook))
+    expect.assertions(2)
+    return request(server)
+      .get(`/api/v1/home/search?search=${search}`)
+      .then((res) => {
+        expect(res.status).toBe(200)
+        expect(searchBooks).toHaveBeenCalledWith(search)
+      })
+  })
+  it('can fail and return an error message', () => {
+    searchBooks.mockImplementation(() => Promise.reject(new Error('fail')))
+    return request(server)
+      .get(`/api/v1/home/search?search=kate`)
       .then((res) => {
         expect.assertions(1)
         expect(res.status).toBe(500)
