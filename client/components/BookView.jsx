@@ -8,9 +8,7 @@ import {fetchBook, sendTransactionData } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-
-  //HARD CODE USER ID UNTIL AUTH IS LINKED
-  const loggedinUser = 1
+  const user = useSelector((state) => state.loggedInUser)
 
   const navigate = useNavigate()
   const {id} = useParams()
@@ -21,7 +19,8 @@ export default function BookView() {
   }, [])
 
   function handleClick(){
-    const newOwnerId = loggedinUser
+    const newOwnerId = user.auth0Id
+    console.log(newOwnerId)
     const currentOwnerId = book.userId
     dispatch(sendTransactionData(id, newOwnerId, currentOwnerId))
     alert(`${book.title} is yours! Please contact ${book.usersName} at ${book.usersEmail} to arrange pickup`)
