@@ -8,13 +8,10 @@ import {fetchBook, sendTransactionData } from '../actions/bookView'
 
 export default function BookView() {
   const book = useSelector(state => state.book)
-<<<<<<< HEAD
 
   //HARD CODE USER ID UNTIL AUTH IS LINKED
   const loggedinUser = 1
 
-=======
->>>>>>> main
   const navigate = useNavigate()
   const {id} = useParams()
   const dispatch = useDispatch()
