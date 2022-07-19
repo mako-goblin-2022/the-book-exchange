@@ -124,6 +124,12 @@ describe('POST /api/v1/home/add', () => {
       })
   })
 })
+
+jest.mock('../../middleware/multer', () => ({
+  multerUpload: {
+    single: jest.fn().mockReturnValue(fileimage.image),
+  },
+}))
 const fileimage = {
   id: 100,
   title: 'The Best Book',
@@ -137,7 +143,6 @@ const fileimage = {
     path: 'server/public/images/uploads/1658202819551-847690973-discord_me.jpg',
     size: 55111,
   },
-  // 'https://en.wikipedia.org/wiki/Winnie-the-Pooh_(book)#/media/File:Winnie-the-Pooh_(book).png',
   user_id: '2',
 }
 
