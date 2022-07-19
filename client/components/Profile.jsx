@@ -12,7 +12,6 @@ function Profile() {
   const FullState = useSelector((state) => {
     return state.profileReducer})
 
-    console.log(FullState)
 
     const id = params.id
    
@@ -29,8 +28,13 @@ function Profile() {
 
   const chosenBooks = FullState.books
 
+  const isNotDbUser = profile === null
+
   return (
     <>
+    {isNotDbUser ?
+    (navigate("/register/"))
+    :(
       <div className={styles.container}>
         <img src={profile.image} alt={profile.name} />
         <h2>{profile.name}</h2>
@@ -74,6 +78,7 @@ function Profile() {
         </div>
         
       </div>
+    )}
     </>
   )
 }
