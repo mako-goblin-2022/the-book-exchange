@@ -1,4 +1,4 @@
-import { getBooksData, saveBook } from '../apis/home'
+import { getBooksData, saveBook, searchBooksData } from '../apis/home'
 
 export const SET_BOOKS = 'SET_BOOKS'
 export const SET_BOOKS_ERROR = 'SET_BOOKS_ERROR'
@@ -43,6 +43,19 @@ export function addBook(newBook) {
     return saveBook(newBook)
       .then((book) => {
         dispatch(postBook(book))
+        return null
+      })
+      .catch((err) => {
+        dispatch(setBooksError(err.message))
+      })
+  }
+}
+
+export function searchBooks(search) {
+  return (dispatch) => {
+    return searchBooksData(search)
+      .then((books) => {
+        dispatch(setBooks(books))
         return null
       })
       .catch((err) => {

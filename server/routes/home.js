@@ -25,4 +25,15 @@ router.post('/add', (req, res) => {
     })
 })
 
+router.get('/search', (req, res) => {
+  const search = req.query.search
+  db.searchBooks(search)
+    .then((books) => {
+      res.json({ books })
+    })
+    .catch((err) => {
+      res.status(500).send(err.message)
+    })
+})
+
 module.exports = router
