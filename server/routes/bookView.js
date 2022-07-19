@@ -1,5 +1,9 @@
 const express = require('express')
 const router = express.Router()
+<<<<<<< HEAD
+=======
+// const checkJwt = require('../auth0.js')
+>>>>>>> main
 
 const db = require('../db/bookView')
 //PATCH api/v1/books/edit/:id
@@ -24,7 +28,9 @@ router.get('/:id', (req, res) => {
 })
 router.patch('/status/:id', (req, res) => {
   const id = req.params.id
-  db.updateStatus(id)
+  const newOwnerId = req.body.newOwnerId
+  const currentOwnerId = req.body.currentOwnerId
+  db.transaction(id, newOwnerId, currentOwnerId)
     .then(() => {
       res.sendStatus(200)
     })
