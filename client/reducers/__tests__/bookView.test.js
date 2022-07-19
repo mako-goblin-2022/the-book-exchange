@@ -1,5 +1,5 @@
 import book from '../bookView'
-import { SET_BOOK, updatebook, saveBook } from '../../actions/bookView'
+import { SET_BOOK, updatebook } from '../../actions/bookView'
 
 const fakeBook = {
   id: 1,
