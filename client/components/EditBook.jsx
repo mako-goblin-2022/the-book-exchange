@@ -2,7 +2,9 @@ import React,{useState,useEffect} from 'react'
 import { useDispatch, useSelector} from 'react-redux'
 import { saveBook , fetchBook} from '../actions/bookView'
 import {useParams, useNavigate } from 'react-router-dom'
+import Modal from 'react-modal'
 import styles from '../styles/forms.module.scss'
+Modal.setAppElement('#app')
 export default function EditBook() {
 
   const book = useSelector(state => state.book)
@@ -15,7 +17,7 @@ export default function EditBook() {
   useEffect(() => {
     dispatch(fetchBook(id))
     seteditedBook(book)
-    console.log(book)
+    //console.log(book)
   },[])
 
   function handleChange(e){
@@ -28,9 +30,25 @@ export default function EditBook() {
 function handleSubmit(e){
   e.preventDefault()
   dispatch(saveBook(editedBook, id))
-  alert('Your update has been saved!')
+  openModal()
+  //alert('Your update has been saved!')
+  //
+}
+
+// **MODAL AREA **//
+let subtitle
+const [modelIsOpen, setIsOpen] = useState(false)
+function openModal() {
+  setIsOpen(true)
+}
+
+
+
+function closeModal() {
+  setIsOpen(false)
   navigate('/books/'+id)
 }
+// **MODAL AREA **//
 
   return (
 
@@ -74,8 +92,19 @@ function handleSubmit(e){
     
 
         <button type='submit' className={styles.editbutton}>Save changes</button>
+
   
       </form>
+      <Modal
+            isOpen={modelIsOpen}
+            onRequestClose={closeModal}
+            className="Modal"
+        
+            contentLabel="Update Complete"
+          >
+            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>{'Your update has been saved!'}</h2>
+            <button className='primary-button' onClick={closeModal}>close</button>
+          </Modal>
     </div>
   )
 }
