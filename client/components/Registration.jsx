@@ -37,7 +37,7 @@ function Registration() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    console.log('component', formUserData)
+ 
     await addUser(formUserData)
     navigate('/')
   }

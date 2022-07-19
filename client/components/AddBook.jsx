@@ -69,13 +69,13 @@ const AddBook = () => {
     {
       document.getElementById('imageurl').style.display = "block"
       document.getElementById('imageupload').style.display = "none"
-      console.log('yes')
+      
       //change imageurl to visibly
     }
     else if (isURL ==='yes')
     {
       //cahnge the other
-      console.log('no')
+     
       document.getElementById('imageurl').style.display = "none"
       document.getElementById('imageupload').style.display = "block"
      
@@ -87,7 +87,7 @@ const AddBook = () => {
       image: e.target.files[0],
     }
     setForm(newForm)
-    console.log(e.target.files[0])
+   
   }
 
   return (
