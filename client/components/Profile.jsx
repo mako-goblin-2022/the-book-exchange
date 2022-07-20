@@ -35,37 +35,34 @@ function Profile() {
         navigate('/register/')
       ) : (
         <div className={styles.container}>
-          <img src={profile.image} alt={profile.name} />
-          <h2>{profile.name}</h2>
-          <h3>
-            <strong>Location:</strong> {profile.location}
-          </h3>
-          <p>
-            <strong>Favourite genre:</strong> {profile.favourite_genre}
-          </p>
-          <div className={styles.tokenContainer}>
-            <img
-              className={styles.tokenimg}
-              src="/images/book.png"
-              alt="book"
-            />
-            <div className={styles.caption}>
-              <p>
+          <div className={styles.profilecard}>
+            <img src={profile.image} alt={profile.name} />
+            <h2>{profile.name}</h2>
+
+            <h3>
+              <strong>Location:</strong> {profile.location}
+            </h3>
+            <ul>
+              <li>
+                <strong>Favourite genre:</strong> {profile.favourite_genre}
+              </li>
+              <li>
                 <strong>Book Token:</strong> {profile.trading_tokens}
-              </p>
-            </div>
+              </li>
+            </ul>
+            <button
+              onClick={() => navigate(`/${id}/add`)}
+              className="primary-button"
+            >
+              Add New Book
+            </button>
           </div>
-          <button
-            onClick={() => navigate(`/${id}/add`)}
-            className="primary-button"
-          >
-            Add New Book
-          </button>
+
           <br></br>
           <div className={styles.row}>
             {chosenBooks.map((book) => (
               <div
-                className={[styles.tokenContainer, styles.column]}
+                className={styles.tokenContainer}
                 key={book.id}
                 onMouseDown={() => navigate('/books/' + book.id)}
                 role="button"

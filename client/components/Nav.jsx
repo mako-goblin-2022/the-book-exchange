@@ -76,7 +76,7 @@ function Nav() {
             <button className={styles.formIcon}>
               <img
                 className={styles.imgsearch}
-                src="/images/book.png"
+                src="/images/book-removebg-preview.png"
                 alt="book"
               />
             </button>

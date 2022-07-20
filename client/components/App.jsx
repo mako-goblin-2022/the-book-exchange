@@ -34,8 +34,8 @@ function App() {
           <Route path={'/edit/:id'} element={<EditBook />} />
           <Route path={'/:id/add'} element={<AddBook />} />
         </Routes>
+        <Footer />
       </section>
-      <Footer />
     </>
   )
 }
