@@ -4,7 +4,6 @@ import { addUser } from '../apis/api'
 import { useNavigate } from 'react-router-dom'
 import styles from '../styles/forms.module.scss'
 function Registration() {
-
   const navigate = useNavigate()
 
   const user = useSelector((state) => state.loggedInUser)
@@ -23,7 +22,7 @@ function Registration() {
       ...formUserData,
       auth0Id: user?.auth0Id,
       token: user?.token,
-      email: user?.email
+      email: user?.email,
     })
   }, [user])
 
@@ -36,15 +35,17 @@ function Registration() {
 
   async function handleSubmit(e) {
     e.preventDefault()
- 
+
     await addUser(formUserData)
     navigate('/')
   }
 
   return (
-    <div>
-      {/* className={styles.registration}> */}
+    <div className={styles.registration}>
+      {/* */}
+
       <form onSubmit={handleSubmit}>
+        <h1>Tell us about yourself:</h1>
         <label htmlFor="name">Name: </label>
         <input
           id="name"
@@ -77,7 +78,9 @@ function Registration() {
           value={formUserData.image}
           onChange={handleInput}
         ></input>
-        <button className="primary-button" type="submit">Register</button>
+        <button className="primary-button" type="submit">
+          Register
+        </button>
       </form>
     </div>
   )

@@ -1,7 +1,16 @@
-form { 
-  width:80%;
-  margin-left: 15px;
 
+.registration {
+  padding-top: 2vw;
+  padding-bottom: 479px;
+  display: flex;
+  max-width:400px;
+  margin: auto;
+  flex-direction: column;
+}
+
+form { 
+  max-width:80%;
+  margin-left: 15px;
 
 input[type=text] {
   width: 100%;
@@ -26,6 +35,10 @@ textarea{
   border-radius: 10px;
 }
 
+button {
+  width: 5vw;
+  
+}
 label {
   padding: 12px 12px 12px 0;
   font-weight: bold;
