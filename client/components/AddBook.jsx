@@ -1,11 +1,8 @@
-import React, {useState} from 'react'
-import {  useNavigate, useParams } from 'react-router-dom'
-import {useDispatch} from 'react-redux'
-import {addBook} from '../actions/home'
+import React, { useState , useEffect } from 'react'
+import { useNavigate ,useParams} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addBook,addimageBook } from '../actions/home'
 import styles from '../styles/forms.module.scss'
-
-
-
 
 
 
@@ -37,12 +34,17 @@ const AddBook = () => {
   const navigate = useNavigate()
 
   const [form, setForm] = useState(initialFormData)
+  const [isURL, setURL] = useState('yes')
 
-  function handleChange (event) {
+  useEffect(()=>{
+
+      document.getElementById('imageupload').style.display = "none"
+  },[])
+  function handleChange(event) {
     const { name, value } = event.target
     const newForm = {
       ...form,
-      [name]: value
+      [name]: value,
     }
     setForm(newForm)
   }
@@ -50,22 +52,53 @@ const AddBook = () => {
   function handleSubmit(event) {
     event.preventDefault()
     
-    dispatch(addBook(form))
-    navigate('/')
-    
+    const formData = new FormData()
+    if (isURL === 'yes') {
+      dispatch(addBook(form))
+    } else {
+      Object.entries(form).forEach(([key, value]) =>
+        formData.append(key, value)
+      )
+      dispatch(addimageBook(formData))
+    }
+    navigate('/')  
+  }
+  function handleimagechange(e) {
+    setURL(e.target.value)
+    if (isURL ==='no')
+    {
+      document.getElementById('imageurl').style.display = "block"
+      document.getElementById('imageupload').style.display = "none"
+      
+      //change imageurl to visibly
+    }
+    else if (isURL ==='yes')
+    {
+      //cahnge the other
+     
+      document.getElementById('imageurl').style.display = "none"
+      document.getElementById('imageupload').style.display = "block"
+     
+    }
+  }
+  function handleiChange(e) {
+    const newForm = {
+      ...form,
+      image: e.target.files[0],
+    }
+    setForm(newForm)
+   
   }
 
- 
   return (
     <div>
-
       <h2>Add new Book</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data" method="post">
         <label htmlFor="title">
           Title:
           <input
             id="title"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.title}
             name="title"
@@ -75,7 +108,7 @@ const AddBook = () => {
           Author:
           <input
             id="author"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.author}
             name="author"
@@ -85,7 +118,7 @@ const AddBook = () => {
           Genre:
           <input
             id="genre"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.genre}
             name="genre"
@@ -95,17 +128,17 @@ const AddBook = () => {
           Publishing Details:
           <input
             id="publishing_details"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.publishing_details}
             name="publishing_details"
           />
         </label>
-        <label htmlFor="edition" >
+        <label htmlFor="edition">
           Edition:
           <input
             id="edition"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.edition}
             name="edition"
@@ -115,13 +148,13 @@ const AddBook = () => {
           ISBN:
           <input
             id="isbn"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.isbn}
             name="isbn"
           />
         </label>
-        <label htmlFor="summary" >
+        <label htmlFor="summary">
           Summary:
           <textarea
             id="summary"
@@ -130,31 +163,60 @@ const AddBook = () => {
             name="summary"
           />
         </label>
-        <label htmlFor="condition" >
+        <label htmlFor="condition">
           Condition:
           <input
             id="condition"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.condition}
             name="condition"
           />
         </label>
-        <label htmlFor="image" >
-          Image:
+        <label htmlFor="image">Image </label>
+        <div>
           <input
-            id="image"
-            type='text'
-            onChange={handleChange}
-            value={form.image}
-            name="image"
+            type={'radio'}
+            name="url"
+            checked={isURL === 'yes'}
+            value="yes"
+            onChange={handleimagechange}
           />
-        </label>
-        <label htmlFor="rating" >
+          <label htmlFor="url">Image URL</label>
+
+          <input
+            type={'radio'}
+            name="upload"
+            checked={isURL === 'no'}
+            value="no"
+            onChange={handleimagechange}
+          />
+          <label htmlFor="upload">Image Upload</label>
+          
+            <input
+              id="imageurl"
+              type="text"
+              onChange={handleChange}
+              value={form.image||""}
+              name="image"
+              // {isURL === 'yes' ? ( visibly:true   ) : ()}
+            />
+       
+            <input
+            id='imageupload'
+              className="primary-button"
+              type="file"
+              name="image"
+              onChange={handleiChange}
+            />
+          
+        </div>
+
+        <label htmlFor="rating">
           Rating:
           <input
             id="rating"
-            type='text'
+            type="text"
             onChange={handleChange}
             value={form.rating}
             name="rating"
@@ -162,10 +224,8 @@ const AddBook = () => {
         </label>
         <button className={styles.editbutton}>Add Book</button>
       </form>
-
     </div>
   )
 }
 
 export default AddBook
-

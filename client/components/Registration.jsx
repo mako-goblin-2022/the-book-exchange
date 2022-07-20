@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { addUser } from '../apis/api'
 import { useNavigate } from 'react-router-dom'
-//import styles from './Registration.module.css'
-
+import styles from '../styles/forms.module.scss'
 function Registration() {
 
   const navigate = useNavigate()
@@ -37,7 +36,7 @@ function Registration() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    console.log('component', formUserData)
+ 
     await addUser(formUserData)
     navigate('/')
   }
@@ -50,6 +49,7 @@ function Registration() {
         <input
           id="name"
           name="name"
+          type={'text'}
           value={formUserData.name}
           onChange={handleInput}
         ></input>
@@ -57,6 +57,7 @@ function Registration() {
         <input
           id="location"
           name="location"
+          type={'text'}
           value={formUserData.location}
           onChange={handleInput}
         ></input>
@@ -64,6 +65,7 @@ function Registration() {
         <input
           id="favouriteGenre"
           name="favouriteGenre"
+          type={'text'}
           value={formUserData.favouriteGenre}
           onChange={handleInput}
         ></input>
@@ -71,10 +73,11 @@ function Registration() {
         <input
           id="image"
           name="image"
+          type={'text'}
           value={formUserData.image}
           onChange={handleInput}
         ></input>
-        <button type="submit">Register</button>
+        <button className="primary-button" type="submit">Register</button>
       </form>
     </div>
   )

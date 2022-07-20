@@ -1,0 +1,23 @@
+.about{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-items: center;
+  align-content: center;
+  width: 60%;
+  margin: auto;
+  // margin-top: 20px;
+  // margin-left: 300px;
+  // margin-right: 300px;
+  // margin-bottom: 20px;
+  padding: 20px;
+}
+
+.about h1{
+  text-align: center
+}
+
+.welcome{
+  font-size: x-large;
+  text-align: center
+}

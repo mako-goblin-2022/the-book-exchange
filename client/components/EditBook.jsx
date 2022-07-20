@@ -69,10 +69,6 @@ function handleSubmit(e){
           <input id='condition' name='condition' type='text' defaultValue={book.condition} onChange={handleChange}></input>
        
         <br></br>
-        <label htmlFor='image'>Image URL</label>
-          <input id='image' name='image' type='text' defaultValue={book.image} onChange={handleChange}></input>
-        
-        <br></br>
         <label htmlFor='rating'>Rating</label>
           <input id='rating' name='rating' type='text' defaultValue={book.rating} onChange={handleChange}></input>
     

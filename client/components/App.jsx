@@ -11,6 +11,7 @@ import Registration from './Registration'
 import About from './About'
 import EditBook from './EditBook'
 import AddBook from './AddBook'
+import UsersListings from "./UsersListings"
 
 import { cacheUser } from '../auth0-utils'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/userslistings/:id" element={<UsersListings />} />
           <Route path={'/profile/:id'} element={<Profile />} />
           <Route path={'/books/:id'} element={<BookView />} />
           <Route path={'/edit/:id'} element={<EditBook />} />
