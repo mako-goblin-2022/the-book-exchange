@@ -17,7 +17,6 @@ export default function EditBook() {
   useEffect(() => {
     dispatch(fetchBook(id))
     seteditedBook(book)
-    //console.log(book)
   },[])
 
   function handleChange(e){
@@ -31,8 +30,7 @@ function handleSubmit(e){
   e.preventDefault()
   dispatch(saveBook(editedBook, id))
   openModal()
-  //alert('Your update has been saved!')
-  //
+
 }
 
 // **MODAL AREA **//
