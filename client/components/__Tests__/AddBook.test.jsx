@@ -69,12 +69,22 @@ describe('<AddBook />', () => {
     fireEvent.click(button)
     expect(fakeStore.dispatch).toHaveBeenCalledWith(addBookMockReturn)
   })
+  it('sets from with new Input' , () => {
+    render(
+      <Provider store={fakeStore}>
+        <AddBook />
+      </Provider>
+  )
+    const input = screen.getAllByRole('textbox')
+    // const { name, value } = event.target
+    // const newForm = {
+    //   ...fakeFormData,
+    //   title: value,
+    // }
+    console.log(input[0])
+    fireEvent.change(input[0], {target: {name : 'title', value: 'test title'}})
+    expect(fakeFormData.title).toBe('test title')
+  })
 })
-
-    // expect.assertions(1)
-    //fake an input for payload
-    // const input = screen.getAllByRole('textbox')
-    // console.log( input[1])
-    // fireEvent.change(input[1], {target: {value:'mandy'}})
-    // //fake buton click
-    // 
+//click button
+//check what has been submitted from that form - async/await for addBook to be called
