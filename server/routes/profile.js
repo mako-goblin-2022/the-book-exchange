@@ -4,9 +4,9 @@ const router = express.Router()
 
 const db = require('../db/profile')
 
-// GET /api/v1/profile/:id
-router.get('/:id', (req, res) => {
-  const id = req.params.id
+// POST /api/v1/profile/
+router.post('/', (req, res) => {
+  const id = req.body.id
   db.getProfile(id)
     .then((data) => res.json(data))
     .catch(() => {
@@ -15,8 +15,8 @@ router.get('/:id', (req, res) => {
 })
 
 //GET /api/v1/profile/:id/books
-router.get('/:id/books', (req, res) => {
-  const user_id = req.params.id
+router.post('/books', (req, res) => {
+  const user_id = req.body.id
   db.getBooksByUserId(user_id)
     .then((data) => res.json(data))
     .catch(() => {

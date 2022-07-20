@@ -10,7 +10,6 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Nav() {
 
-  const id = useAuth0().user?.sub
   const { logout, loginWithRedirect } = useAuth0()
   
   function handleLogoff(e) {
@@ -56,7 +55,7 @@ function Nav() {
           </form>
         </div>
         <IfAuthenticated>
-          <NavLink to={`/profile/${id}`}>My Profile</NavLink>
+          <NavLink to={`/profile`}>My Profile</NavLink>
           <NavLink to="/" onClick={handleLogoff}>
             Log off
           </NavLink>

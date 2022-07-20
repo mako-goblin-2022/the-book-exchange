@@ -4,7 +4,8 @@ const url = '/api/v1/profile/'
 
 export function getProfile(id) {
   return request
-    .get(url + id)
+    .post(url)
+    .send({ id })
     .then((res) => {
       return res.body
     })
@@ -14,7 +15,8 @@ export function getProfile(id) {
 
 export function getBooksbyID(id) {
   return request
-    .get(url + id + '/books')
+    .post(url + 'books')
+    .send({ id })
     .then((res) => {
       return res.body
     })

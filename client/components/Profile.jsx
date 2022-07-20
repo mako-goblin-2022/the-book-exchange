@@ -1,28 +1,25 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 import { fetchBooks, fetchProfile } from '../actions/profile'
 import styles from '../styles/Profile.module.scss'
 
 function Profile() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const params = useParams()
 
   const FullState = useSelector((state) => {
     return state.profileReducer})
 
-
-    const id = params.id
-   
- 
-  useEffect(() => {
-    dispatch(fetchProfile(id))
-  }, [])
+  const auth0Id = useSelector((state) => {
+    return state.loggedInUser.auth0Id})
 
   useEffect(() => {
-    dispatch(fetchBooks(id))
-  }, [])
+    if (auth0Id) {
+      dispatch(fetchProfile(auth0Id))
+      dispatch(fetchBooks(auth0Id))
+    }
+  }, [auth0Id])
 
   const profile = FullState.profile
 
