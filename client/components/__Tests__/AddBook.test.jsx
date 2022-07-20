@@ -49,8 +49,6 @@ const fakeStore = {
   getState: jest.fn(),
 }
 
-//test is the correct book sent to the database?
-
 describe('<AddBook />', () => {
 
   it('dispatches the addBook thunk when form is submitted', () => {
@@ -64,11 +62,12 @@ describe('<AddBook />', () => {
           <AddBook />
         </Provider>
     )
-    // screen.debug()
     const button = screen.getByRole('button')
     fireEvent.click(button)
     expect(fakeStore.dispatch).toHaveBeenCalledWith(addBookMockReturn)
   })
+
+  //TODO finish the below test
   it('sets from with new Input' , () => {
     render(
       <Provider store={fakeStore}>
@@ -81,10 +80,8 @@ describe('<AddBook />', () => {
     //   ...fakeFormData,
     //   title: value,
     // }
-    console.log(input[0])
     fireEvent.change(input[0], {target: {name : 'title', value: 'test title'}})
     expect(fakeFormData.title).toBe('test title')
   })
 })
-//click button
-//check what has been submitted from that form - async/await for addBook to be called
+
