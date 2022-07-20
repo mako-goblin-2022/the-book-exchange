@@ -41,7 +41,7 @@ function Nav() {
     <nav>
       <div className={styles.logo}>
         <NavLink to="/">
-          <img src="/images/logo-home-link.png" alt="logo" />
+          <img src="/images/the-book-exchange-logo-trans.png" alt="logo" />
         </NavLink>
       </div>
       <div className={styles.topnav}>
