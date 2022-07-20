@@ -15,14 +15,10 @@ h1{
   background-color: #fffffc ;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
-  margin: auto; 
 }
-
-
-
-
 .bookCover {
   width:200px;
   height: auto;
