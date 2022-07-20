@@ -38,7 +38,12 @@ function Nav() {
   }
 
   return (
-    <>
+    <nav>
+      <div className={styles.logo}>
+        <NavLink to="/">
+          <img src="/images/logo-home-link.png" alt="logo" />
+        </NavLink>
+      </div>
       <div className={styles.topnav}>
         <div className={styles.acontainer}>
           <NavLink to="/">Home</NavLink>
@@ -78,7 +83,7 @@ function Nav() {
           </form>
         </div>
       </div>
-    </>
+    </nav>
   )
 }
 

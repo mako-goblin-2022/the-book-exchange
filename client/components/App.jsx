@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import React from 'react'
-import Header from './Header'
+//import Header from './Header'
 import Footer from './Footer'
 import Home from './Home'
 import Profile from './Profile'
@@ -11,7 +11,7 @@ import Registration from './Registration'
 import About from './About'
 import EditBook from './EditBook'
 import AddBook from './AddBook'
-import UsersListings from "./UsersListings"
+import UsersListings from './UsersListings'
 
 import { cacheUser } from '../auth0-utils'
 import { useAuth0 } from '@auth0/auth0-react'
@@ -22,7 +22,7 @@ function App() {
     <>
       <section className="main">
         <Nav />
-        <Header />
+        {/* */}
 
         <Routes>
           <Route path="/" element={<Home />} />
