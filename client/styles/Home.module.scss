@@ -15,25 +15,22 @@ h1{
   background-color: #fffffc ;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
-  margin: auto; 
 }
-
-
-
-
 .bookCover {
- width:200px;
- height: 400px;
- padding: 25px;
- box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.39);
- margin:30px 30px 50px 30px;
-}
-
-.bookCover:hover {
-  border: 10px solid #5B27D8;
-  border-radius: 10px;
+  width:200px;
+  height: auto;
+  box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.39);
+  margin:30px 30px 50px 30px;
  }
-
+ 
+ .bookCover:hover {
+  transition-duration: 0.5s;
+  opacity: 60%;
+  cursor: pointer;
+  border-radius: 10px;
+  }
+ 
 

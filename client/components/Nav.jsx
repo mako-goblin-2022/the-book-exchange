@@ -1,18 +1,17 @@
-import React, {useState} from 'react'
-import { NavLink} from 'react-router-dom'
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import styles from '../styles/Nav.module.scss'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { searchBooks } from '../actions/home'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Nav() {
-
   const id = useAuth0().user?.sub
   const { logout, loginWithRedirect } = useAuth0()
-  
+
   function handleLogoff(e) {
     e.preventDefault()
     logout()
@@ -39,13 +38,41 @@ function Nav() {
   }
 
   return (
-    <>
+    <nav>
+      <div className={styles.logo}>
+        <NavLink to="/">
+          <img src="/images/the-book-exchange-logo-trans.png" alt="logo" />
+        </NavLink>
+      </div>
       <div className={styles.topnav}>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
+        <div className={styles.acontainer}>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <IfAuthenticated>
+            <NavLink to={`/profile/${id}`}>My Profile</NavLink>
+            <NavLink to="/" onClick={handleLogoff}>
+              Log off
+            </NavLink>
+          </IfAuthenticated>
+
+          <IfNotAuthenticated>
+            <NavLink to="/" onClick={handleRegister}>
+              Register
+            </NavLink>
+            <NavLink to="/" onClick={handleSignIn}>
+              Sign in
+            </NavLink>
+          </IfNotAuthenticated>
+        </div>
         <div className={styles.searchContainer}>
           <form className={styles.navform} onSubmit={handleSubmit}>
-            <input type="text" placeholder="Search.." name="search" value={search} onChange={e => setSearch(e.target.value)}/>
+            <input
+              type="text"
+              placeholder="Search.."
+              name="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
             <button className={styles.formIcon}>
               <img
                 className={styles.imgsearch}
@@ -55,23 +82,8 @@ function Nav() {
             </button>
           </form>
         </div>
-        <IfAuthenticated>
-          <NavLink to={`/profile/${id}`}>My Profile</NavLink>
-          <NavLink to="/" onClick={handleLogoff}>
-            Log off
-          </NavLink>
-        </IfAuthenticated>
-
-        <IfNotAuthenticated>
-          <NavLink to="/" onClick={handleRegister}>
-            Register
-          </NavLink>
-          <NavLink to="/" onClick={handleSignIn}>
-            Sign in
-          </NavLink>
-        </IfNotAuthenticated>
       </div>
-    </>
+    </nav>
   )
 }
 
