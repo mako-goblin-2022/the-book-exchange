@@ -19,10 +19,9 @@ function App() {
   cacheUser(useAuth0)
   return (
     <>
-      
       <section className="main">
-        <Header />
         <Nav />
+        <Header />
 
         <Routes>
           <Route path="/" element={<Home />} />
@@ -30,7 +29,7 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path={'/profile/:id'} element={<Profile />} />
           <Route path={'/books/:id'} element={<BookView />} />
-          <Route path={'/edit/:id'} element={<EditBook />}/>
+          <Route path={'/edit/:id'} element={<EditBook />} />
           <Route path={'/:id/add'} element={<AddBook />} />
         </Routes>
       </section>
